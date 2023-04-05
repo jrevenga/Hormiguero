@@ -20,7 +20,7 @@ public class Soldado extends Hormiga {
     @Override
     public void run() {
         
-        entrarColonia();
+        colonia.entrarAlmacen(this);
         while(true){
             if(iteraciones == 6){
                 iteraciones = 0;

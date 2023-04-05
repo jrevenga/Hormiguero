@@ -11,8 +11,8 @@ package com.mycompany.hormiguero;
  * @author Jorge
  */
 public abstract class Hormiga extends Thread {
-    protected Integer id;
     protected String tipo;
+    protected Integer id;
     protected Colonia colonia;
     protected Integer iteraciones;
 
@@ -22,18 +22,6 @@ public abstract class Hormiga extends Thread {
         this.id = id;
         this.colonia = colonia;
         iteraciones = 0;
-    }
-
-    public Colonia getColonia() {
-        return colonia;
-    }
-    
-    public void entrarColonia(){
-        colonia.entrarColonia(this);
-    }
-    
-    public void salirColonia(){
-        colonia.salirColonia(this);
     }
     
     public void comer(int tiempo){

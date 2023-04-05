@@ -23,7 +23,7 @@ public class Obrera extends Hormiga {
     @Override
     public void run() {
         
-        entrarColonia();
+        colonia.entrarAlmacen(this);
         while(true){
             if(iteraciones == 10){
                 comer(3000);
