@@ -21,6 +21,8 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Colonia {
@@ -118,15 +120,18 @@ public class Colonia {
      public synchronized void depositarAlmacen(Hormiga h) {
          verificarPausa();
          comidaAlmacen +=5;
+         interfaz.unidadesAlmacen(comidaAlmacen.toString());
          //Liberar bloqueos para los que esperan la comida en el almacen
          cogerAlmacen.signalAll();
-         interfaz.unidadesAlmacen(comidaAlmacen.toString());
      }
      
      public synchronized void cogerAlmacen(Hormiga h) {
          verificarPausa();
-         if (comidaAlmacen < 5){
-             //Bloquear hasta que traigan comida al almacen
+         while (comidaAlmacen < 5){
+             try {
+                 //Bloquear hasta que traigan comida al almacen
+                 cogerAlmacen.await();
+             } catch (InterruptedException ex) {}
          }
          comidaAlmacen -=5;
          interfaz.unidadesAlmacen(comidaAlmacen.toString());
@@ -164,18 +169,21 @@ public class Colonia {
     public synchronized void depositarComedor(Hormiga h) {
         verificarPausa();
          comidaComedor +=5;
-         //Liberar bloqueos para los que esperan para comer
          interfaz.unidadesComedor(comidaComedor.toString());
+         //Liberar bloqueos para los que esperan para comer
+         comer.signalAll();
      }
     
     public synchronized void comerComedor(Hormiga h) {
         verificarPausa();
         if(h.tipo != "HC"){ // Las hormigas crias no consumen unidades   
-            if(comidaComedor < 1){
-                //Se bloquea hasta que traigan comida para comer
-            }else{
-                comidaComedor--;    //Consume 1 unidad de alimento
+            while (comidaComedor < 1){
+                try {
+                    //Se bloquea hasta que traigan comida para comer
+                    comer.await();
+                } catch (InterruptedException ex) {}
             }
+            comidaComedor--;    //Consume 1 unidad de alimento
         }
         interfaz.unidadesComedor(comidaComedor.toString());
     }
