@@ -20,7 +20,7 @@ public class Cria extends Hormiga {
     @Override
     public void run() {
         
-        entrarColonia();
+        colonia.entrarAlmacen(this);
         while(true){
             int tiempo = new Random().nextInt(2000) + 3000;
             comer(tiempo);
