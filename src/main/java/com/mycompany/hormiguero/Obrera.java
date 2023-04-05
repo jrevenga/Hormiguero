@@ -44,42 +44,50 @@ public class Obrera extends Hormiga {
     
     private void mueveComida(){
         //Entrar ALMACÉN DE COMIDA
+        colonia.entrarAlmacen(this);
         try {
             Thread.sleep(rand.nextInt(1000) + 1000);
         } catch (InterruptedException ex) {}
         colonia.escribirEnLog("La hormiga obrera " + tipo + id + " coge comida del ALMACÉN DE COMIDA");
         //Salir ALMACÉN DE COMIDA
+        colonia.salirAlmacen(this);
+        colonia.empezarTransporte(this);
         try {
             Thread.sleep(rand.nextInt(2000) + 1000);    //Se mueve hasta la ZONA PARA COMER
         } catch (InterruptedException ex) {}
+        colonia.acabarTransporte(this);
         //Entrar ZONA PARA COMER
+        colonia.entrarComedor(this);
         //Se cargan los 5 alimentos
         try {
             Thread.sleep(rand.nextInt(1000) + 1000);
         } catch (InterruptedException ex) {}
         colonia.escribirEnLog("La hormiga obrera " + tipo + id + " deposita comida en la ZONA PARA COMER");
         //Salir ZONA PARA COMER
+        colonia.salirComedor(this);
         iteraciones++;
     }
     
     private void recoleztarComida(){
-        salirColonia();
+        colonia.salirColonia(this);
         colonia.escribirEnLog("La hormiga obrera " + tipo + id + " sale a buscar comida");
         try {
             Thread.sleep(4000);
         } catch (InterruptedException ex) {}
-        entrarColonia();
+        colonia.entrarColonia(this);
         colonia.escribirEnLog("La hormiga obrera " + tipo + id + " vuelve de recoleztar comida");
     }
     
     private void depositarComida(){
         //Entrar ALMACÉN DE COMIDA, sólo pueden acceder simultáneamente 10 hormigas.
+        colonia.entrarAlmacen(this);
         colonia.escribirEnLog("La hormiga obrera " + tipo + id + " accede al AlMACEN DE COMIDA");
         try {
             Thread.sleep(rand.nextInt(2000) + 2000);
         } catch (InterruptedException ex) {}
         colonia.escribirEnLog("La hormiga obrera " + tipo + id + " deposita comida en EL AlMACEN DE COMIDA");
         //Salir ALMACÉN DE COMIDA
+        colonia.salirAlmacen(this);
         iteraciones++;
     }
 }

@@ -37,11 +37,13 @@ public class Soldado extends Hormiga {
     private void hacerInstruccion(){
         //verificarInsecto();
         //Entrar ZONA DE INSTRUCCIÓN
+        colonia.entrarInstruccion(this);
         colonia.escribirEnLog("La hormiga soldado " + tipo + id + " comienza a hacer instrucción");
         try {
             Thread.sleep(new Random().nextInt(6000) + 2000);
         } catch (InterruptedException ex) {}
         //Salir ZONA DE INSTRUCCIÓN
+        colonia.salirInstruccion(this);
     }
 }
 

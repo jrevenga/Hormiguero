@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author Jorge
  */
-public class GenerarHilos {
+public class GenerarHilos extends Thread{
     
     private Colonia colonia;
     private int obrerasCreadas;
@@ -23,7 +23,7 @@ public class GenerarHilos {
         soldadosCreados = 0;
     }
     
-    public void generarHormigas() {
+    public void run() {
         
         while (obrerasCreadas < 6000) {
             // Calcular el tiempo de espera aleatorio

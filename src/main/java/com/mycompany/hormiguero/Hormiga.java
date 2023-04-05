@@ -5,7 +5,6 @@
  */
 package com.mycompany.hormiguero;
 
-import java.util.Random;
 
 /**
  *
@@ -24,22 +23,17 @@ public abstract class Hormiga extends Thread {
         this.colonia = colonia;
         iteraciones = 0;
     }
-    public void run() {
-        
+
+    public Colonia getColonia() {
+        return colonia;
     }
     
     public void entrarColonia(){
-        colonia.getEntrada().cruzarTunel();
+        colonia.entrarColonia(this);
     }
     
     public void salirColonia(){
-        int salida = new Random().nextInt(2);
-        if(salida == 0){
-            colonia.getSalida1().cruzarTunel();
-        }
-        else{
-            colonia.getSalida2().cruzarTunel();
-        }
+        colonia.salirColonia(this);
     }
     
     public void comer(int tiempo){
@@ -47,6 +41,7 @@ public abstract class Hormiga extends Thread {
             //verificarInsecto();
         }
         //Entrar ZONA PARA COMER
+        colonia.entrarComedor(this);
         if(tipo != "HC"){       // Las hormigas crias no consumen unidades
             //Consume 1 unidad de alimento
         }
@@ -55,6 +50,7 @@ public abstract class Hormiga extends Thread {
             Thread.sleep(tiempo);
         } catch (InterruptedException ex) {}
         //Salir ZONA PARA COMER
+        colonia.salirComedor(this);
     }
     
     public void descansar(int tiempo){
@@ -62,10 +58,12 @@ public abstract class Hormiga extends Thread {
             //verificarInsecto();
         }
         //Entrar ZONA DE DESCANSO
+        colonia.entrarZonaDescanso(this);
         colonia.escribirEnLog("La hormiga " + tipo + id + " descansa");
         try {
             Thread.sleep(tiempo);
         } catch (InterruptedException ex) {}
         //Salir ZONA DE DESCANSO
+        colonia.salirZonaDescanso(this);
     }
 }
