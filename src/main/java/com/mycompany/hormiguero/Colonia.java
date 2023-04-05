@@ -36,13 +36,13 @@ public class Colonia {
     private List<Hormiga> comedor;
     private List<Hormiga> criasRefugio;
     private Interfaz interfaz;
-    private Semaphore semaforoAlmacen, cogerAlmacen, comer;
+    private Semaphore semaforoAlmacen;
     private Integer criasComiendo, obrerasInterior, comidaAlmacen, comidaComedor;
     private FileWriter logWriter;
     private PrintWriter pw;
     private DateTimeFormatter dtf;
     private Lock cerrojo;
-    private Condition detener;
+    private Condition detener,cogerAlmacen, comer;
     private boolean detenido, insecto;
 
     public Colonia(Interfaz interfaz) {
@@ -68,11 +68,11 @@ public class Colonia {
         dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         this.interfaz = interfaz;
         semaforoAlmacen = new Semaphore(10, true);
-        cogerAlmacen = new Semaphore(0, true);
-        comer = new Semaphore(0, true);
         detenido = false;
         cerrojo = new ReentrantLock();
         detener = cerrojo.newCondition();
+        cogerAlmacen = cerrojo.newCondition();
+        comer = cerrojo.newCondition();
         insecto = true;
         comidaAlmacen = 0;
         comidaComedor = 0;
@@ -118,15 +118,15 @@ public class Colonia {
      public synchronized void depositarAlmacen(Hormiga h) {
          verificarPausa();
          comidaAlmacen +=5;
-         //cogerAlmacen.release();
+         //Liberar bloqueos para los que esperan la comida en el almacen
+         cogerAlmacen.signalAll();
          interfaz.unidadesAlmacen(comidaAlmacen.toString());
      }
      
-     public synchronized void cogerAlmacen(Hormiga h) throws InterruptedException {
+     public synchronized void cogerAlmacen(Hormiga h) {
          verificarPausa();
          if (comidaAlmacen < 5){
-             //Bloqueas hasta que traigan comida
-             //cogerAlmacen.acquire();
+             //Bloquear hasta que traigan comida al almacen
          }
          comidaAlmacen -=5;
          interfaz.unidadesAlmacen(comidaAlmacen.toString());
@@ -164,16 +164,15 @@ public class Colonia {
     public synchronized void depositarComedor(Hormiga h) {
         verificarPausa();
          comidaComedor +=5;
-         //comer.release();
+         //Liberar bloqueos para los que esperan para comer
          interfaz.unidadesComedor(comidaComedor.toString());
      }
     
-    public synchronized void comerComedor(Hormiga h) throws InterruptedException {
+    public synchronized void comerComedor(Hormiga h) {
         verificarPausa();
         if(h.tipo != "HC"){ // Las hormigas crias no consumen unidades   
             if(comidaComedor < 1){
-                //Se bloquea hasta que traigan comida
-                //comer.acquire();
+                //Se bloquea hasta que traigan comida para comer
             }else{
                 comidaComedor--;    //Consume 1 unidad de alimento
             }

@@ -24,7 +24,7 @@ public abstract class Hormiga extends Thread {
         iteraciones = 0;
     }
     
-    public void comer(int tiempo){
+    public void comer(int tiempo) {
         //Entrar ZONA PARA COMER
         colonia.entrarComedor(this);
         colonia.comerComedor(this);
