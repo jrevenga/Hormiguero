@@ -25,14 +25,9 @@ public abstract class Hormiga extends Thread {
     }
     
     public void comer(int tiempo){
-        if(tipo != "HO"){       // Las hormigas obreras no se preocupan por los insectos
-            //verificarInsecto();
-        }
         //Entrar ZONA PARA COMER
         colonia.entrarComedor(this);
-        if(tipo != "HC"){       // Las hormigas crias no consumen unidades
-            //Consume 1 unidad de alimento
-        }
+        colonia.comerComedor(this);
         colonia.escribirEnLog("La hormiga " + tipo + id + " come un alimento");
         try {
             Thread.sleep(tiempo);
@@ -42,9 +37,6 @@ public abstract class Hormiga extends Thread {
     }
     
     public void descansar(int tiempo){
-        if(tipo != "HO"){
-            //verificarInsecto();
-        }
         //Entrar ZONA DE DESCANSO
         colonia.entrarZonaDescanso(this);
         colonia.escribirEnLog("La hormiga " + tipo + id + " descansa");

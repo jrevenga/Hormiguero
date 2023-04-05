@@ -48,6 +48,7 @@ public class Obrera extends Hormiga {
         try {
             Thread.sleep(rand.nextInt(1000) + 1000);
         } catch (InterruptedException ex) {}
+        colonia.cogerAlmacen(this);
         colonia.escribirEnLog("La hormiga obrera " + tipo + id + " coge comida del ALMACÉN DE COMIDA");
         //Salir ALMACÉN DE COMIDA
         colonia.salirAlmacen(this);
@@ -62,6 +63,7 @@ public class Obrera extends Hormiga {
         try {
             Thread.sleep(rand.nextInt(1000) + 1000);
         } catch (InterruptedException ex) {}
+        colonia.depositarComedor(this);
         colonia.escribirEnLog("La hormiga obrera " + tipo + id + " deposita comida en la ZONA PARA COMER");
         //Salir ZONA PARA COMER
         colonia.salirComedor(this);
@@ -84,6 +86,7 @@ public class Obrera extends Hormiga {
         try {
             Thread.sleep(rand.nextInt(2000) + 2000);
         } catch (InterruptedException ex) {}
+        colonia.depositarAlmacen(this);
         colonia.escribirEnLog("La hormiga obrera " + tipo + id + " deposita comida en EL AlMACEN DE COMIDA");
         //Salir ALMACÉN DE COMIDA
         colonia.salirAlmacen(this);
