@@ -23,7 +23,7 @@ public class Obrera extends Hormiga {
     @Override
     public void run() {
         
-        colonia.entrarAlmacen(this);
+        colonia.entrarColonia(this);
         while(true){
             if(iteraciones == 10){
                 comer(3000);
@@ -81,7 +81,6 @@ public class Obrera extends Hormiga {
     private void depositarComida(){
         //Entrar ALMACÉN DE COMIDA, sólo pueden acceder simultáneamente 10 hormigas.
         colonia.entrarAlmacen(this);
-        colonia.escribirEnLog("La hormiga obrera " + tipo + id + " accede al AlMACEN DE COMIDA");
         try {
             Thread.sleep(rand.nextInt(2000) + 2000);
         } catch (InterruptedException ex) {}

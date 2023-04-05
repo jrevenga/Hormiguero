@@ -19,13 +19,13 @@ public class GenerarHilos extends Thread{
     
     public GenerarHilos(Colonia colonia) {
         this.colonia = colonia;
-        obrerasCreadas = 0;
-        soldadosCreados = 0;
+        obrerasCreadas = 1;
+        soldadosCreados = 1;
     }
     
     public void run() {
         
-        while (obrerasCreadas < 6000) {
+        while (obrerasCreadas < 6001) {
             // Calcular el tiempo de espera aleatorio
             int tiempoEspera = (new Random().nextInt(2700) + 800);
             

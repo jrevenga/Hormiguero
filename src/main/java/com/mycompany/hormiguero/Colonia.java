@@ -33,7 +33,7 @@ public class Colonia {
     private List<Hormiga> criasRefugio;
     private Interfaz interfaz;
     private Semaphore semaforoAlmacen;
-    private Integer criasComiendo, obrerasInterior, comidaAlmacen, comidaComedor = 0;
+    private Integer criasComiendo, obrerasInterior, comidaAlmacen, comidaComedor;
     private FileWriter logWriter;
     private PrintWriter pw;
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -49,6 +49,9 @@ public class Colonia {
         soldadosIntruccion = new ArrayList<>();
         soldadosInvasion = new ArrayList<>();
         criasRefugio = new ArrayList<>();
+        transporte = new ArrayList<>();
+        obrerasInterior = 0;
+        criasComiendo = 0;
         try {
             logWriter = new FileWriter("evolucionHormiguero.txt");
             pw = new PrintWriter(logWriter);
@@ -165,18 +168,11 @@ public class Colonia {
         return contenido;
     }
     
-    public synchronized void escribirEnLog(String evento) {
+    public void escribirEnLog(String evento) {
         try {
-            pw.println(evento +" "+ dtf.format(LocalDateTime.now()));
+            pw.println(dtf.format(LocalDateTime.now()) +" - "+ evento);
             logWriter.flush();
-            logWriter.close();
         } catch (IOException e) {} 
-        
-        finally {
-            try {
-                logWriter.close();
-            } catch (IOException e) {}
-        }
     }
 }
 

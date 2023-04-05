@@ -17,7 +17,7 @@ public class Tunel {
     private static final int TIEMPO_CRUZAR = 100;
 
     public Tunel() {
-        semaforo = new Semaphore(0, true);
+        semaforo = new Semaphore(1, true);
     }
     
     public void cruzarTunel() {
