@@ -1,92 +1,83 @@
-2023/04/06 01:51:28 - La hormiga obrera HO1 sale a buscar comida
-2023/04/06 01:51:31 - La hormiga soldado HS1 comienza a hacer instrucción
-2023/04/06 01:51:32 - La hormiga obrera HO1 vuelve de recoleztar comida
-2023/04/06 01:51:34 - La hormiga obrera HO3 sale a buscar comida
-2023/04/06 01:51:34 - La hormiga HC1 come un alimento
-2023/04/06 01:51:37 - La hormiga HS1 descansa
-2023/04/06 01:51:38 - La hormiga obrera HO3 vuelve de recoleztar comida
-2023/04/06 01:51:38 - La hormiga HC1 descansa
-2023/04/06 01:51:39 - La hormiga obrera HO4 coge comida del ALMACÉN DE COMIDA
-2023/04/06 01:51:39 - La hormiga soldado HS1 comienza a hacer instrucción
-2023/04/06 01:51:39 - La hormiga obrera HO5 sale a buscar comida
-2023/04/06 01:51:41 - La hormiga soldado HS2 comienza a hacer instrucción
-2023/04/06 01:51:42 - La hormiga HC2 come un alimento
-2023/04/06 01:51:42 - La hormiga HC1 come un alimento
-2023/04/06 01:51:43 - La hormiga obrera HO7 sale a buscar comida
-2023/04/06 01:51:43 - La hormiga obrera HO6 coge comida del ALMACÉN DE COMIDA
-2023/04/06 01:51:43 - La hormiga obrera HO5 vuelve de recoleztar comida
-2023/04/06 01:51:45 - La hormiga HS2 descansa
-2023/04/06 01:51:45 - La hormiga HC2 descansa
-2023/04/06 01:51:46 - La hormiga HC1 descansa
-2023/04/06 01:51:46 - La hormiga HS1 descansa
-2023/04/06 01:51:47 - La hormiga soldado HS2 comienza a hacer instrucción
-2023/04/06 01:51:47 - La hormiga obrera HO7 vuelve de recoleztar comida
-2023/04/06 01:51:48 - La hormiga soldado HS3 comienza a hacer instrucción
-2023/04/06 01:51:48 - La hormiga soldado HS1 comienza a hacer instrucción
-2023/04/06 01:51:49 - La hormiga HC2 come un alimento
-2023/04/06 01:51:50 - La hormiga HC1 come un alimento
-2023/04/06 01:51:51 - La hormiga HC3 come un alimento
-2023/04/06 01:51:51 - La hormiga obrera HO9 sale a buscar comida
-2023/04/06 01:51:51 - La hormiga HS2 descansa
-2023/04/06 01:51:52 - La hormiga HS3 descansa
-2023/04/06 01:51:53 - La hormiga soldado HS2 comienza a hacer instrucción
-2023/04/06 01:51:53 - La hormiga HC2 descansa
-2023/04/06 01:51:53 - La hormiga HS1 descansa
-2023/04/06 01:51:53 - La hormiga obrera HO10 coge comida del ALMACÉN DE COMIDA
-2023/04/06 01:51:53 - La hormiga HC1 descansa
-2023/04/06 01:51:54 - La hormiga HC3 descansa
-2023/04/06 01:51:54 - La hormiga soldado HS3 comienza a hacer instrucción
-2023/04/06 01:51:55 - La hormiga obrera HO9 vuelve de recoleztar comida
-2023/04/06 01:51:55 - La hormiga obrera HO11 sale a buscar comida
-2023/04/06 01:51:55 - La hormiga soldado HS1 comienza a hacer instrucción
-2023/04/06 01:51:56 - La hormiga soldado HS4 comienza a hacer instrucción
-2023/04/06 01:51:57 - La hormiga HC2 come un alimento
-2023/04/06 01:51:57 - La hormiga HC1 come un alimento
-2023/04/06 01:51:58 - La hormiga HC3 come un alimento
-2023/04/06 01:51:58 - La hormiga HC4 come un alimento
-2023/04/06 01:51:59 - La hormiga obrera HO11 vuelve de recoleztar comida
-2023/04/06 01:51:59 - La hormiga obrera HO13 sale a buscar comida
-2023/04/06 01:52:00 - La hormiga HS1 descansa
-2023/04/06 01:52:00 - La hormiga obrera HO12 coge comida del ALMACÉN DE COMIDA
-2023/04/06 01:52:01 - La hormiga HC3 descansa
-2023/04/06 01:52:01 - La hormiga HS2 descansa
-2023/04/06 01:52:01 - La hormiga HC2 descansa
-2023/04/06 01:52:01 - La hormiga obrera HO14 coge comida del ALMACÉN DE COMIDA
-2023/04/06 01:52:02 - La hormiga soldado HS1 comienza a hacer instrucción
-2023/04/06 01:52:02 - La hormiga HS3 descansa
-2023/04/06 01:52:02 - La hormiga HC4 descansa
-2023/04/06 01:52:02 - La hormiga HC1 descansa
-2023/04/06 01:52:03 - La hormiga soldado HS5 comienza a hacer instrucción
-2023/04/06 01:52:03 - La hormiga soldado HS2 comienza a hacer instrucción
-2023/04/06 01:52:04 - La hormiga obrera HO13 vuelve de recoleztar comida
-2023/04/06 01:52:04 - La hormiga soldado HS3 comienza a hacer instrucción
-2023/04/06 01:52:04 - La hormiga HS4 descansa
-2023/04/06 01:52:05 - La hormiga HC3 come un alimento
-2023/04/06 01:52:05 - La hormiga HC2 come un alimento
-2023/04/06 01:52:05 - La hormiga HC5 come un alimento
-2023/04/06 01:52:05 - La hormiga obrera HO15 sale a buscar comida
-2023/04/06 01:52:06 - La hormiga HS5 descansa
-2023/04/06 01:52:06 - La hormiga HC4 come un alimento
-2023/04/06 01:52:06 - La hormiga soldado HS4 comienza a hacer instrucción
-2023/04/06 01:52:06 - La hormiga HC1 come un alimento
-2023/04/06 01:52:08 - La hormiga soldado HS5 comienza a hacer instrucción
-2023/04/06 01:52:08 - La hormiga HS1 descansa
-2023/04/06 01:52:08 - La hormiga HS4 descansa
-2023/04/06 01:52:09 - La hormiga HC3 descansa
-2023/04/06 01:52:09 - La hormiga HC5 descansa
-2023/04/06 01:52:09 - La hormiga obrera HO16 coge comida del ALMACÉN DE COMIDA
-2023/04/06 01:52:09 - La hormiga obrera HO17 sale a buscar comida
-2023/04/06 01:52:09 - La hormiga obrera HO15 vuelve de recoleztar comida
-2023/04/06 01:52:10 - La hormiga HC2 descansa
-2023/04/06 01:52:10 - La hormiga HC1 descansa
-2023/04/06 01:52:10 - La hormiga soldado HS1 comienza a hacer instrucción
-2023/04/06 01:52:10 - La hormiga soldado HS4 comienza a hacer instrucción
-2023/04/06 01:52:11 - La hormiga HS2 descansa
-2023/04/06 01:52:11 - La hormiga HC4 descansa
-2023/04/06 01:52:11 - La hormiga HS3 descansa
-2023/04/06 01:52:13 - La hormiga soldado HS6 comienza a hacer instrucción
-2023/04/06 01:52:13 - La hormiga soldado HS2 comienza a hacer instrucción
-2023/04/06 01:52:13 - La hormiga HC3 come un alimento
-2023/04/06 01:52:13 - La hormiga soldado HS3 comienza a hacer instrucción
-2023/04/06 01:52:13 - La hormiga HC5 come un alimento
-2023/04/06 01:52:13 - La hormiga obrera HO17 vuelve de recoleztar comida
+2023/04/06 04:05:54 - La hormiga obrera HO1 sale a buscar comida
+2023/04/06 04:05:59 - La hormiga obrera HO1 vuelve de recoleztar comida
+2023/04/06 04:06:00 - La hormiga soldado HS1 comienza a hacer instrucción
+2023/04/06 04:06:02 - La hormiga obrera HO3 sale a buscar comida
+2023/04/06 04:06:02 - La hormiga HC1 come un alimento
+2023/04/06 04:06:06 - La hormiga obrera HO4 coge comida del ALMACÉN DE COMIDA
+2023/04/06 04:06:06 - La hormiga obrera HO5 sale a buscar comida
+2023/04/06 04:06:07 - La hormiga obrera HO3 vuelve de recoleztar comida
+2023/04/06 04:06:07 - La hormiga HC1 descansa
+2023/04/06 04:06:08 - La hormiga HS1 descansa
+2023/04/06 04:06:09 - La hormiga soldado HS2 comienza a hacer instrucción
+2023/04/06 04:06:10 - La hormiga soldado HS1 comienza a hacer instrucción
+2023/04/06 04:06:10 - La hormiga obrera HO5 vuelve de recoleztar comida
+2023/04/06 04:06:11 - La hormiga HC1 come un alimento
+2023/04/06 04:06:12 - La hormiga HC2 come un alimento
+2023/04/06 04:06:13 - La hormiga HS2 descansa
+2023/04/06 04:06:13 - La hormiga obrera HO7 sale a buscar comida
+2023/04/06 04:06:14 - La hormiga obrera HO6 coge comida del ALMACÉN DE COMIDA
+2023/04/06 04:06:14 - La hormiga HS1 descansa
+2023/04/06 04:06:14 - La hormiga HC1 descansa
+2023/04/06 04:06:15 - La hormiga soldado HS2 comienza a hacer instrucción
+2023/04/06 04:06:15 - La hormiga obrera HO8 coge comida del ALMACÉN DE COMIDA
+2023/04/06 04:06:16 - La hormiga soldado HS1 comienza a hacer instrucción
+2023/04/06 04:06:16 - La hormiga HC2 descansa
+2023/04/06 04:06:16 - La hormiga soldado HS3 comienza a hacer instrucción
+2023/04/06 04:06:17 - La hormiga obrera HO7 vuelve de recoleztar comida
+2023/04/06 04:06:18 - La hormiga HC1 come un alimento
+2023/04/06 04:06:18 - La hormiga HS3 descansa
+2023/04/06 04:06:19 - La hormiga HC3 come un alimento
+2023/04/06 04:06:19 - La hormiga obrera HO9 sale a buscar comida
+2023/04/06 04:06:20 - La hormiga HC2 come un alimento
+2023/04/06 04:06:20 - La hormiga soldado HS3 comienza a hacer instrucción
+2023/04/06 04:06:22 - La hormiga HS2 descansa
+2023/04/06 04:06:22 - La hormiga HC1 descansa
+2023/04/06 04:06:22 - La hormiga HS1 descansa
+2023/04/06 04:06:22 - La hormiga HC3 descansa
+2023/04/06 04:06:22 - La hormiga obrera HO10 coge comida del ALMACÉN DE COMIDA
+2023/04/06 04:06:22 - La hormiga HS3 descansa
+2023/04/06 04:06:23 - La hormiga obrera HO9 vuelve de recoleztar comida
+2023/04/06 04:06:24 - La hormiga obrera HO11 sale a buscar comida
+2023/04/06 04:06:24 - La hormiga soldado HS2 comienza a hacer instrucción
+2023/04/06 04:06:24 - La hormiga HC2 descansa
+2023/04/06 04:06:24 - La hormiga soldado HS1 comienza a hacer instrucción
+2023/04/06 04:06:24 - La hormiga soldado HS3 comienza a hacer instrucción
+2023/04/06 04:06:26 - La hormiga soldado HS4 comienza a hacer instrucción
+2023/04/06 04:06:26 - La hormiga HC1 come un alimento
+2023/04/06 04:06:26 - La hormiga HC3 come un alimento
+2023/04/06 04:06:27 - La hormiga HS2 descansa
+2023/04/06 04:06:28 - La hormiga HC4 come un alimento
+2023/04/06 04:06:28 - La hormiga obrera HO11 vuelve de recoleztar comida
+2023/04/06 04:06:28 - La hormiga HC2 come un alimento
+2023/04/06 04:06:29 - La hormiga soldado HS2 comienza a hacer instrucción
+2023/04/06 04:06:29 - La hormiga obrera HO13 sale a buscar comida
+2023/04/06 04:06:29 - La hormiga HC1 descansa
+2023/04/06 04:06:29 - La hormiga obrera HO12 coge comida del ALMACÉN DE COMIDA
+2023/04/06 04:06:30 - La hormiga HC3 descansa
+2023/04/06 04:06:32 - La hormiga HS1 descansa
+2023/04/06 04:06:32 - La hormiga obrera HO14 coge comida del ALMACÉN DE COMIDA
+2023/04/06 04:06:32 - La hormiga HS3 descansa
+2023/04/06 04:06:32 - La hormiga HS2 descansa
+2023/04/06 04:06:33 - La hormiga HC4 descansa
+2023/04/06 04:06:33 - La hormiga soldado HS5 comienza a hacer instrucción
+2023/04/06 04:06:33 - La hormiga HS4 descansa
+2023/04/06 04:06:33 - La hormiga HC2 descansa
+2023/04/06 04:06:33 - La hormiga obrera HO13 vuelve de recoleztar comida
+2023/04/06 04:06:33 - La hormiga HC1 come un alimento
+2023/04/06 04:06:34 - La hormiga soldado HS1 comienza a hacer instrucción
+2023/04/06 04:06:34 - La hormiga HC3 come un alimento
+2023/04/06 04:06:34 - La hormiga soldado HS3 comienza a hacer instrucción
+2023/04/06 04:06:34 - La hormiga soldado HS2 comienza a hacer instrucción
+2023/04/06 04:06:35 - La hormiga soldado HS4 comienza a hacer instrucción
+2023/04/06 04:06:35 - La hormiga HC5 come un alimento
+2023/04/06 04:06:36 - La hormiga obrera HO15 sale a buscar comida
+2023/04/06 04:06:37 - La hormiga HC4 come un alimento
+2023/04/06 04:06:37 - La hormiga HS5 descansa
+2023/04/06 04:06:37 - La hormiga HC2 come un alimento
+2023/04/06 04:06:38 - La hormiga HC3 descansa
+2023/04/06 04:06:38 - La hormiga HC1 descansa
+2023/04/06 04:06:39 - La hormiga soldado HS5 comienza a hacer instrucción
+2023/04/06 04:06:39 - La hormiga HS2 descansa
+2023/04/06 04:06:39 - La hormiga HC5 descansa
+2023/04/06 04:06:39 - La hormiga obrera HO16 coge comida del ALMACÉN DE COMIDA
+2023/04/06 04:06:40 - La hormiga obrera HO15 vuelve de recoleztar comida
