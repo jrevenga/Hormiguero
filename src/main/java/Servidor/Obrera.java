@@ -22,26 +22,27 @@ public class Obrera extends Hormiga {
     
     @Override
     public void run() {
-        
-        colonia.entrarColonia(this);
-        while(true){
-            if(iteraciones == 10){
-                comer(3000);
-                descansar(2000);
-                iteraciones = 0;
-            }
-            else{
-                if(id % 2 == 0){
-                    try {
-                        mueveComida();
-                    } catch (InterruptedException ex) {}
+        try {
+            colonia.entrarColonia(this);
+            while(true){
+                if(iteraciones == 10){
+                    comer(3000);
+                    descansar(2000);
+                    iteraciones = 0;
                 }
                 else{
-                    recoleztarComida();
-                    depositarComida();
+                    if(id % 2 == 0){
+                        try {
+                            mueveComida();
+                        } catch (InterruptedException ex) {}
+                    }
+                    else{
+                        recoleztarComida();
+                        depositarComida();
+                    }
                 }
             }
-        }
+        } catch (InterruptedException ex) {}
     }
     
     private void mueveComida() throws InterruptedException{
@@ -72,7 +73,7 @@ public class Obrera extends Hormiga {
         iteraciones++;
     }
     
-    private void recoleztarComida(){
+    private void recoleztarComida() throws InterruptedException{
         colonia.salirColonia(this);
         colonia.escribirEnLog("La hormiga obrera " + tipo + id + " sale a buscar comida");
         try {
@@ -82,7 +83,7 @@ public class Obrera extends Hormiga {
         colonia.escribirEnLog("La hormiga obrera " + tipo + id + " vuelve de recoleztar comida");
     }
     
-    private void depositarComida(){
+    private void depositarComida() throws InterruptedException{
         //Entrar ALMACÉN DE COMIDA, sólo pueden acceder simultáneamente 10 hormigas.
         colonia.entrarAlmacen(this);
         try {

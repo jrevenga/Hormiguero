@@ -20,21 +20,23 @@ public class Soldado extends Hormiga {
     @Override
     public void run() {
         
-        colonia.entrarColonia(this);
-        while(true){
-            if(iteraciones == 6){
-                iteraciones = 0;
-                int tiempo = new Random().nextInt(2000) + 3000;
-                comer(tiempo);
+        try {
+            colonia.entrarColonia(this);
+            while(true){
+                if(iteraciones == 6){
+                    iteraciones = 0;
+                    int tiempo = new Random().nextInt(2000) + 3000;
+                    comer(tiempo);
+                }
+                else{
+                    hacerInstruccion();
+                    descansar(2000);
+                }
             }
-            else{
-                hacerInstruccion();
-                descansar(2000);
-            }
-        }
+        } catch (InterruptedException ex) {}
     }
     
-    private void hacerInstruccion(){
+    private void hacerInstruccion() throws InterruptedException{
         //verificarInsecto();
         //Entrar ZONA DE INSTRUCCIÓN
         colonia.entrarInstruccion(this);

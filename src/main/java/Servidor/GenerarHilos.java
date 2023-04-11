@@ -23,40 +23,33 @@ public class GenerarHilos extends Thread{
         soldadosCreados = 1;
     }
     
-    public void run() {
-        
+    @Override
+    public void run() {  
         while (obrerasCreadas < 6001) {
-            
-            // Calcular el tiempo de espera aleatorio
-            int tiempoEspera = (new Random().nextInt(2700) + 800);
-            colonia.verificarPausa();
-            // Crear una obrera
+            try {
+                // Calcular el tiempo de espera aleatorio
+                int tiempoEspera = (new Random().nextInt(2700) + 800);
+                colonia.verificarPausa();
+                // Crear una obrera
                 Obrera obrera = new Obrera(obrerasCreadas, colonia);
                 obrera.start();
                 obrerasCreadas++;
-            
-            try {
-                Thread.sleep(tiempoEspera);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            if (obrerasCreadas % 3 == 0) {
-                colonia.verificarPausa();
-                // Crear una soldado y una cría
-                Soldado soldado = new Soldado(soldadosCreados, colonia);
-                soldado.start();
                 
-                try {
+                Thread.sleep(tiempoEspera);
+                
+                if (obrerasCreadas % 3 == 0) {
+                    colonia.verificarPausa();
+                    // Crear una soldado y una cría
+                    Soldado soldado = new Soldado(soldadosCreados, colonia);
+                    soldado.start();
+                    
                     Thread.sleep(tiempoEspera);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    colonia.verificarPausa();
+                    Cria cria = new Cria(soldadosCreados, colonia);
+                    cria.start();
+                    soldadosCreados++;
                 }
-                colonia.verificarPausa();
-                Cria cria = new Cria(soldadosCreados, colonia);
-                cria.start();
-                soldadosCreados++;
-            }
+            } catch (InterruptedException ex) {}
         }
     }
     

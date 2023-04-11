@@ -20,11 +20,13 @@ public class Cria extends Hormiga {
     @Override
     public void run() {
         
-        colonia.entrarColonia(this);
-        while(true){
-            int tiempo = new Random().nextInt(2000) + 3000;
-            comer(tiempo);
-            descansar(4000);
-        }
+        try {
+            colonia.entrarColonia(this);
+            while(true){
+                int tiempo = new Random().nextInt(2000) + 3000;
+                comer(tiempo);
+                descansar(4000);
+            }
+        } catch (InterruptedException ex) {}
     }
 }
