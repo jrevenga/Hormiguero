@@ -62,9 +62,7 @@ public class Colonia {
         try {
             logWriter = new FileWriter("evolucionHormiguero.txt");
             pw = new PrintWriter(logWriter);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException e) {}
         dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         this.interfaz = interfaz;
         semaforoAlmacen = new Semaphore(10, true);
@@ -76,6 +74,8 @@ public class Colonia {
         insecto = true;
         comidaAlmacen = 0;
         comidaComedor = 0;
+        interfaz.unidadesAlmacen(comidaAlmacen.toString());
+        interfaz.unidadesComedor(comidaComedor.toString());
     }
 
     public Integer getObrerasExterior() {
@@ -139,24 +139,26 @@ public class Colonia {
         interfaz.mostrarAlmacen(lista(almacen));
     }
     
-     public synchronized void depositarAlmacen(Hormiga h) {
+     public void depositarAlmacen(Hormiga h) {
          verificarPausa();
-         comidaAlmacen +=5;
+         cerrojo.lock();
+         comidaAlmacen += 5;
          interfaz.unidadesAlmacen(comidaAlmacen.toString());
          //Liberar bloqueos para los que esperan la comida en el almacen
          cogerAlmacen.signalAll();
+         cerrojo.unlock();
      }
      
-     public synchronized void cogerAlmacen(Hormiga h) {
+     public void cogerAlmacen(Hormiga h) throws InterruptedException {
          verificarPausa();
-         while (comidaAlmacen < 5){
-             try {
-                 //Bloquear hasta que traigan comida al almacen
+         cerrojo.lock();
+         try {
+             while (comidaAlmacen < 5){
                  cogerAlmacen.await();
-             } catch (InterruptedException ex) {}
-         }
-         comidaAlmacen -=5;
-         interfaz.unidadesAlmacen(comidaAlmacen.toString());
+             }
+             comidaAlmacen -= 5;
+             interfaz.unidadesAlmacen(comidaAlmacen.toString());
+         } finally { cerrojo.unlock(); }
      }
     
     public synchronized void salirAlmacen(Hormiga h) {
@@ -188,26 +190,31 @@ public class Colonia {
         interfaz.mostrarComedor(lista(comedor));
     }
     
-    public synchronized void depositarComedor(Hormiga h) {
+    public void depositarComedor(Hormiga h) {
         verificarPausa();
-         comidaComedor +=5;
-         interfaz.unidadesComedor(comidaComedor.toString());
-         //Liberar bloqueos para los que esperan para comer
-         comer.signalAll();
+        cerrojo.lock();
+        comidaComedor += 5;
+        interfaz.unidadesComedor(comidaComedor.toString());
+        //Liberar bloqueos para los que esperan para comer
+        comer.signalAll();
+        cerrojo.unlock();
      }
     
-    public synchronized void comerComedor(Hormiga h) {
+    public void comerComedor(Hormiga h) throws InterruptedException {
         verificarPausa();
         if(h.tipo != "HC"){ // Las hormigas crias no consumen unidades   
-            while (comidaComedor < 1){
-                try {
+            cerrojo.lock();
+            try {
+                while (comidaComedor < 1){
                     //Se bloquea hasta que traigan comida para comer
                     comer.await();
-                } catch (InterruptedException ex) {}
+                }
+                comidaComedor--;    //Consume 1 unidad de alimento
+                interfaz.unidadesComedor(comidaComedor.toString());
+            } finally {
+                cerrojo.unlock();
             }
-            comidaComedor--;    //Consume 1 unidad de alimento
         }
-        interfaz.unidadesComedor(comidaComedor.toString());
     }
 
     public synchronized void salirComedor(Hormiga h) {

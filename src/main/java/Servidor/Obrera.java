@@ -32,7 +32,9 @@ public class Obrera extends Hormiga {
             }
             else{
                 if(id % 2 == 0){
-                    mueveComida();
+                    try {
+                        mueveComida();
+                    } catch (InterruptedException ex) {}
                 }
                 else{
                     recoleztarComida();
@@ -42,7 +44,7 @@ public class Obrera extends Hormiga {
         }
     }
     
-    private void mueveComida(){
+    private void mueveComida() throws InterruptedException{
         //Entrar ALMACÉN DE COMIDA
         colonia.entrarAlmacen(this);
         try {
