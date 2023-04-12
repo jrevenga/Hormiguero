@@ -24,56 +24,47 @@ import java.util.concurrent.locks.ReentrantLock;
 import javax.swing.JOptionPane;
 
 public class Colonia {
-    private Tunel entrada;
-    private Tunel salida1;
-    private Tunel salida2;
-    private List<Hormiga> obrerasExterior;
-    private List<Hormiga> soldadosInvasion;
-    private List<Hormiga> almacen;
-    private List<Hormiga> transporte;
-    private List<Hormiga> soldadosIntruccion;
-    private List<Hormiga> zonaDescanso;
-    private List<Hormiga> comedor;
-    private List<Hormiga> criasRefugio;
-    private Interfaz interfaz;
-    private Semaphore semaforoAlmacen;
+    private final Tunel entrada, salida1, salida2;
+    private final List<Hormiga> obrerasExterior, soldadosInvasion, almacen, transporte, soldadosIntruccion, zonaDescanso, comedor, criasRefugio;
+    private final Lock lockPausa, lockAlmacen, lockComedor;
+    private final Condition pausa;
     private Integer criasComiendo, obrerasInterior, comidaAlmacen, comidaComedor;
-    private FileWriter logWriter;
-    private PrintWriter pw;
-    private DateTimeFormatter dtf;
-    private Lock cerrojo;
-    private Condition detener,cogerAlmacen, comer;
     private boolean detenido, insecto;
+    private final Semaphore semaforoAlmacen;
+    private final Interfaz interfaz;
+    private FileWriter logWriter;
+    private final PrintWriter pw;
+    private final DateTimeFormatter dtf;
 
     public Colonia(Interfaz interfaz) {
-        entrada = new Tunel();
-        salida1 = new Tunel();
-        salida2 = new Tunel();
-        almacen = new ArrayList<>();
-        comedor = new ArrayList<>();
-        zonaDescanso = new ArrayList<>();
-        obrerasExterior = new ArrayList<>();
-        soldadosIntruccion = new ArrayList<>();
-        soldadosInvasion = new ArrayList<>();
-        criasRefugio = new ArrayList<>();
-        transporte = new ArrayList<>();
-        obrerasInterior = 0;
-        criasComiendo = 0;
-        try {
-            logWriter = new FileWriter("evolucionHormiguero.txt");
-            pw = new PrintWriter(logWriter);
-        } catch (IOException e) {}
-        dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        this.entrada = new Tunel();
+        this.salida1 = new Tunel();
+        this.salida2 = new Tunel();
+        this.obrerasExterior = new ArrayList<>();
+        this.soldadosInvasion = new ArrayList<>();
+        this.transporte = new ArrayList<>();
+        this.almacen = new ArrayList<>();
+        this.soldadosIntruccion = new ArrayList<>();
+        this.zonaDescanso = new ArrayList<>();
+        this.comedor = new ArrayList<>();
+        this.criasRefugio = new ArrayList<>();
+        this.lockAlmacen = new ReentrantLock();
+        this.lockComedor = new ReentrantLock();
+        this.lockPausa = new ReentrantLock();
+        this.pausa = lockPausa.newCondition();
+        this.criasComiendo = 0;
+        this.obrerasInterior = 0;
+        this.comidaAlmacen = 0;
+        this.comidaComedor = 0;
+        this.detenido = false;
+        this.insecto = true;
+        this.semaforoAlmacen = new Semaphore(10, true);
         this.interfaz = interfaz;
-        semaforoAlmacen = new Semaphore(10, true);
-        detenido = false;
-        cerrojo = new ReentrantLock();
-        detener = cerrojo.newCondition();
-        cogerAlmacen = cerrojo.newCondition();
-        comer = cerrojo.newCondition();
-        insecto = true;
-        comidaAlmacen = 0;
-        comidaComedor = 0;
+        this.dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        try {
+            this.logWriter = new FileWriter("evolucionHormiguero.txt");
+        } catch (IOException ex) {}
+        this.pw = new PrintWriter(logWriter);
         interfaz.unidadesAlmacen(comidaAlmacen.toString());
         interfaz.unidadesComedor(comidaComedor.toString());
     }
@@ -139,29 +130,21 @@ public class Colonia {
         interfaz.mostrarAlmacen(lista(almacen));
     }
     
-     public void depositarAlmacen(Hormiga h) throws InterruptedException {
-         verificarPausa();
-         cerrojo.lock();
-        try {
-            comidaAlmacen += 5;
-            interfaz.unidadesAlmacen(comidaAlmacen.toString());
-            //Liberar bloqueos para los que esperan la comida en el almacen
-            cogerAlmacen.signalAll();
-        } finally {
-            cerrojo.unlock();
-        }
+     public synchronized void depositarAlmacen(Hormiga h) throws InterruptedException {
+        verificarPausa();
+        comidaAlmacen += 5;
+        interfaz.unidadesAlmacen(comidaAlmacen.toString());
+        //Liberar bloqueos para los que esperan la comida en el almacen
+        notifyAll();
      }
      
-     public void cogerAlmacen(Hormiga h) throws InterruptedException {
-         verificarPausa();
-         cerrojo.lock();
-         try {
-             while (comidaAlmacen < 5){
-                 cogerAlmacen.await();
-             }
-             comidaAlmacen -= 5;
-             interfaz.unidadesAlmacen(comidaAlmacen.toString());
-         } finally { cerrojo.unlock(); }
+     public synchronized void cogerAlmacen(Hormiga h) throws InterruptedException {
+        verificarPausa();
+        while (comidaAlmacen < 5){
+            wait();
+        }
+        comidaAlmacen -= 5;
+        interfaz.unidadesAlmacen(comidaAlmacen.toString());
      }
     
     public synchronized void salirAlmacen(Hormiga h) throws InterruptedException {
@@ -193,29 +176,22 @@ public class Colonia {
         interfaz.mostrarComedor(lista(comedor));
     }
     
-    public void depositarComedor(Hormiga h) throws InterruptedException {
+    public synchronized void depositarComedor(Hormiga h) throws InterruptedException {
         verificarPausa();
-        cerrojo.lock();
         comidaComedor += 5;
         interfaz.unidadesComedor(comidaComedor.toString());
         //Liberar bloqueos para los que esperan para comer
-        comer.signalAll();
-        cerrojo.unlock();
+        notifyAll();
      }
     
-    public void comerComedor(Hormiga h) throws InterruptedException {
+    public synchronized void comerComedor(Hormiga h) throws InterruptedException {
         verificarPausa();
-        cerrojo.lock();
-        try {
-            while (comidaComedor < 1){
-                //Se bloquea hasta que traigan comida para comer
-                comer.await();
-            }
-            comidaComedor--;    //Consume 1 unidad de alimento
-            interfaz.unidadesComedor(comidaComedor.toString());
-        } finally {
-            cerrojo.unlock();
+        while (comidaComedor < 1){
+            //Se bloquea hasta que traigan comida para comer
+            wait();
         }
+        comidaComedor--;    //Consume 1 unidad de alimento
+        interfaz.unidadesComedor(comidaComedor.toString());
     }
 
     public synchronized void salirComedor(Hormiga h) throws InterruptedException {
@@ -267,7 +243,7 @@ public class Colonia {
     }
     
     
-    private String lista(List<Hormiga> lista) {
+    private synchronized String lista(List<Hormiga> lista) {
         String contenido = "";
         for (int i = 0; i < lista.size(); i++) {
             Hormiga h = lista.get(i);
@@ -276,18 +252,18 @@ public class Colonia {
         return contenido;
     }
     
-    public void escribirEnLog(String evento) {
+    public synchronized void escribirEnLog(String evento) {
         try {
             pw.println(dtf.format(LocalDateTime.now()) +" - "+ evento);
             logWriter.flush();
         } catch (IOException e) {} 
     }
     
-    public void verificarInsecto() { 
+    public synchronized void verificarInsecto() { 
         
     }
     
-    public void insecto() {
+    public synchronized void insecto() {
         if(insecto == true){
             JOptionPane.showMessageDialog(null, "Ya hay un insecto atacando la colonia");
         }
@@ -296,34 +272,19 @@ public class Colonia {
         }
     }
     
-    public void verificarPausa() throws InterruptedException {
-        cerrojo.lock();
-        try {
-            while (detenido) {
-                detener.await();
-            }
-        } finally {
-            cerrojo.unlock();
+    public synchronized void verificarPausa() throws InterruptedException {
+        while (detenido) {
+            wait();
         }
     }
 
-    public void pausar() {
-        cerrojo.lock();
-        try {
-            detenido = true;
-        } finally {
-            cerrojo.unlock();
-        }
+    public synchronized void pausar() {
+        detenido = true;
     }
 
-    public void reanudar() {
-        cerrojo.lock();
-        try {
-            detenido = false;
-            detener.signalAll();
-        } finally {
-            cerrojo.unlock();
-        }
+    public synchronized void reanudar() {
+        detenido = false;
+        notifyAll();
     }
 }
 
