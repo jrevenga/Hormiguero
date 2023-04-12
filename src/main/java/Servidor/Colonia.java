@@ -18,8 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 import javax.swing.JOptionPane;
 
 public class Colonia {
@@ -50,7 +48,7 @@ public class Colonia {
         this.comidaAlmacen = 0;
         this.comidaComedor = 0;
         this.detenido = false;
-        this.insecto = true;
+        this.insecto = false;
         this.semaforoAlmacen = new Semaphore(10, true);
         this.interfaz = interfaz;
         this.dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
