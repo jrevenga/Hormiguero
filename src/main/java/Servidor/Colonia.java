@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import javax.swing.JOptionPane;
@@ -26,8 +25,6 @@ import javax.swing.JOptionPane;
 public class Colonia {
     private final Tunel entrada, salida1, salida2;
     private final List<Hormiga> obrerasExterior, soldadosInvasion, almacen, transporte, soldadosIntruccion, zonaDescanso, comedor, criasRefugio;
-    private final Lock lockPausa, lockAlmacen, lockComedor;
-    private final Condition pausa;
     private Integer criasComiendo, obrerasInterior, comidaAlmacen, comidaComedor;
     private boolean detenido, insecto;
     private final Semaphore semaforoAlmacen;
@@ -48,10 +45,6 @@ public class Colonia {
         this.zonaDescanso = new ArrayList<>();
         this.comedor = new ArrayList<>();
         this.criasRefugio = new ArrayList<>();
-        this.lockAlmacen = new ReentrantLock();
-        this.lockComedor = new ReentrantLock();
-        this.lockPausa = new ReentrantLock();
-        this.pausa = lockPausa.newCondition();
         this.criasComiendo = 0;
         this.obrerasInterior = 0;
         this.comidaAlmacen = 0;
@@ -263,12 +256,13 @@ public class Colonia {
         
     }
     
+    
     public synchronized void insecto() {
         if(insecto == true){
             JOptionPane.showMessageDialog(null, "Ya hay un insecto atacando la colonia");
         }
         else{
-            
+            insecto = true;
         }
     }
     
