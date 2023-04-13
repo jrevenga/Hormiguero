@@ -48,24 +48,18 @@ public class Obrera extends Hormiga {
     private void mueveComida() throws InterruptedException{
         //Entrar ALMACÉN DE COMIDA
         colonia.getAlmacen().entrar(this);
-        try {
-            Thread.sleep(rand.nextInt(1000) + 1000);
-        } catch (InterruptedException ex) {}
+        Thread.sleep(rand.nextInt(1000) + 1000);
         colonia.getAlmacen().coger();
         colonia.escribirEnLog("La hormiga obrera " + tipo + id + " coge comida del ALMACÉN DE COMIDA");
         //Salir ALMACÉN DE COMIDA
         colonia.getAlmacen().salir(this);
         colonia.empezarTransporte(this);
-        try {
-            Thread.sleep(rand.nextInt(2000) + 1000);    //Se mueve hasta la ZONA PARA COMER
-        } catch (InterruptedException ex) {}
+        Thread.sleep(rand.nextInt(2000) + 1000);    //Se mueve hasta la ZONA PARA COMER
         colonia.acabarTransporte(this);
         //Entrar ZONA PARA COMER
         colonia.getComedor().entrar(this);
         //Se cargan los 5 alimentos
-        try {
-            Thread.sleep(rand.nextInt(1000) + 1000);
-        } catch (InterruptedException ex) {}
+        Thread.sleep(rand.nextInt(1000) + 1000);
         colonia.getComedor().depositar();
         colonia.escribirEnLog("La hormiga obrera " + tipo + id + " deposita comida en la ZONA PARA COMER");
         //Salir ZONA PARA COMER
@@ -76,9 +70,7 @@ public class Obrera extends Hormiga {
     private void recoleztarComida() throws InterruptedException{
         colonia.salirColonia(this);
         colonia.escribirEnLog("La hormiga obrera " + tipo + id + " sale a buscar comida");
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException ex) {}
+        Thread.sleep(4000);
         colonia.entrarColonia(this);
         colonia.escribirEnLog("La hormiga obrera " + tipo + id + " vuelve de recoleztar comida");
     }
@@ -86,9 +78,7 @@ public class Obrera extends Hormiga {
     private void depositarComida() throws InterruptedException{
         //Entrar ALMACÉN DE COMIDA, sólo pueden acceder simultáneamente 10 hormigas.
         colonia.getAlmacen().entrar(this);
-        try {
-            Thread.sleep(rand.nextInt(2000) + 2000);
-        } catch (InterruptedException ex) {}
+        Thread.sleep(rand.nextInt(2000) + 2000);
         colonia.getAlmacen().depositar();
         colonia.escribirEnLog("La hormiga obrera " + tipo + id + " deposita comida en EL AlMACEN DE COMIDA");
         //Salir ALMACÉN DE COMIDA

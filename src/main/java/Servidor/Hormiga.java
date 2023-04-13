@@ -29,9 +29,7 @@ public abstract class Hormiga extends Thread {
         colonia.getComedor().entrar(this);
         colonia.getComedor().comer();
         colonia.escribirEnLog("La hormiga " + tipo + id + " come un alimento");
-        try {
-            Thread.sleep(tiempo);
-        } catch (InterruptedException ex) {}
+        Thread.sleep(tiempo);
         //Salir ZONA PARA COMER
         colonia.getComedor().salir(this);
     }
@@ -40,9 +38,7 @@ public abstract class Hormiga extends Thread {
         //Entrar ZONA DE DESCANSO
         colonia.entrarZonaDescanso(this);
         colonia.escribirEnLog("La hormiga " + tipo + id + " descansa");
-        try {
-            Thread.sleep(tiempo);
-        } catch (InterruptedException ex) {}
+        Thread.sleep(tiempo);
         //Salir ZONA DE DESCANSO
         colonia.salirZonaDescanso(this);
     }
