@@ -29,19 +29,21 @@ public class Almacen {
     }
     
     
-    public synchronized void entrar(Hormiga h) throws InterruptedException {
+    public void entrar(Hormiga h) throws InterruptedException {
         colonia.getPausa().verificarPausa();
-        try {
-            semaforoAlmacen.acquire();
-        } catch (InterruptedException ex) {}
-        lista.add(h);
-        colonia.getInterfaz().mostrarAlmacen(lista(lista));
+        semaforoAlmacen.acquire();
+        synchronized (lista){
+            lista.add(h);
+            colonia.getInterfaz().mostrarAlmacen(lista(lista));
+        }
     }
     
-    public synchronized void salir(Hormiga h) throws InterruptedException {
+    public void salir(Hormiga h) throws InterruptedException {
         colonia.getPausa().verificarPausa();
-        lista.remove(h);
-        colonia.getInterfaz().mostrarAlmacen(lista(lista));
+        synchronized (lista){
+            lista.remove(h);
+            colonia.getInterfaz().mostrarAlmacen(lista(lista));
+        }
         semaforoAlmacen.release();
     }
     
