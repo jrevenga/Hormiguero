@@ -17,15 +17,16 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.Semaphore;
 import javax.swing.JOptionPane;
 
 public class Colonia {
     private final Tunel entrada, salida1, salida2;
-    private final List<Hormiga> obrerasExterior, soldadosInvasion, almacen, transporte, soldadosIntruccion, zonaDescanso, comedor, criasRefugio;
-    private Integer criasComiendo, obrerasInterior, comidaAlmacen, comidaComedor;
-    private boolean detenido, insecto;
-    private final Semaphore semaforoAlmacen;
+    private final Comedor comedor;
+    private final Almacen almacen;
+    private final Pausa pausa;
+    private final List<Hormiga> obrerasExterior, soldadosInvasion, transporte, soldadosIntruccion, zonaDescanso, criasRefugio;
+    private Integer obrerasInterior, comidaAlmacen;
+    private boolean insecto;
     private final Interfaz interfaz;
     private FileWriter logWriter;
     private final PrintWriter pw;
@@ -35,21 +36,18 @@ public class Colonia {
         this.entrada = new Tunel();
         this.salida1 = new Tunel();
         this.salida2 = new Tunel();
+        this.pausa = new Pausa();
+        this.comedor = new Comedor(this);
+        this.almacen = new Almacen(this);
         this.obrerasExterior = new ArrayList<>();
         this.soldadosInvasion = new ArrayList<>();
         this.transporte = new ArrayList<>();
-        this.almacen = new ArrayList<>();
         this.soldadosIntruccion = new ArrayList<>();
         this.zonaDescanso = new ArrayList<>();
-        this.comedor = new ArrayList<>();
         this.criasRefugio = new ArrayList<>();
-        this.criasComiendo = 0;
         this.obrerasInterior = 0;
         this.comidaAlmacen = 0;
-        this.comidaComedor = 0;
-        this.detenido = false;
         this.insecto = false;
-        this.semaforoAlmacen = new Semaphore(10, true);
         this.interfaz = interfaz;
         this.dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         try {
@@ -57,7 +55,23 @@ public class Colonia {
         } catch (IOException ex) {}
         this.pw = new PrintWriter(logWriter);
         interfaz.unidadesAlmacen(comidaAlmacen.toString());
-        interfaz.unidadesComedor(comidaComedor.toString());
+        interfaz.unidadesComedor(comedor.getComida().toString());
+    }
+
+    public Pausa getPausa() {
+        return pausa;
+    }
+
+    public Comedor getComedor() {
+        return comedor;
+    }
+
+    public Almacen getAlmacen() {
+        return almacen;
+    }
+
+    public Interfaz getInterfaz() {
+        return interfaz;
     }
 
     public Integer getObrerasExterior() {
@@ -77,7 +91,7 @@ public class Colonia {
     }
 
     public Integer getCriasComiendo() {
-        return criasComiendo;
+        return comedor.getCriasComiendo();
     }
 
     public Integer getCriasRefugio() {
@@ -86,7 +100,7 @@ public class Colonia {
     
     
     public synchronized void entrarColonia(Hormiga h) throws InterruptedException {
-        verificarPausa();
+        pausa.verificarPausa();
         entrada.cruzarTunel();
         if(h instanceof Obrera){
             obrerasExterior.remove(h);
@@ -96,7 +110,7 @@ public class Colonia {
     }
 
     public synchronized void salirColonia(Hormiga h) throws InterruptedException {
-        verificarPausa();
+        pausa.verificarPausa();
         int salida = new Random().nextInt(2);
         if(salida == 0){
             salida1.cruzarTunel();
@@ -111,124 +125,54 @@ public class Colonia {
         interfaz.mostrarObrerasExterior(lista(obrerasExterior));
     }
     
-    
-    public synchronized void entrarAlmacen(Hormiga h) throws InterruptedException {
-        verificarPausa();
-        try {
-            semaforoAlmacen.acquire();
-        } catch (InterruptedException ex) {}
-        almacen.add(h);
-        interfaz.mostrarAlmacen(lista(almacen));
-    }
-    
-     public synchronized void depositarAlmacen(Hormiga h) throws InterruptedException {
-        verificarPausa();
-        comidaAlmacen += 5;
-        interfaz.unidadesAlmacen(comidaAlmacen.toString());
-        //Liberar bloqueos para los que esperan la comida en el almacen
-        notifyAll();
-     }
-     
-     public synchronized void cogerAlmacen(Hormiga h) throws InterruptedException {
-        verificarPausa();
-        while (comidaAlmacen < 5){
-            wait();
-        }
-        comidaAlmacen -= 5;
-        interfaz.unidadesAlmacen(comidaAlmacen.toString());
-     }
-    
-    public synchronized void salirAlmacen(Hormiga h) throws InterruptedException {
-        verificarPausa();
-        semaforoAlmacen.release();
-        almacen.remove(h);
-        interfaz.mostrarAlmacen(lista(almacen));
-    }
-    
+    // Transporte entre ALMACEN y COMEDOR
     public synchronized void empezarTransporte(Hormiga h) throws InterruptedException {
-        verificarPausa();
+        pausa.verificarPausa();
         transporte.add(h);
         interfaz.mostrarllevandoComida(lista(transporte));
     }
 
     public synchronized void acabarTransporte(Hormiga h) throws InterruptedException {
-        verificarPausa();
+        pausa.verificarPausa();
         transporte.remove(h);
         interfaz.mostrarllevandoComida(lista(transporte));
     }
     
-    
-    public synchronized void entrarComedor(Hormiga h) throws InterruptedException {
-        verificarPausa();
-        if(h instanceof Cria){ 
-            criasComiendo++;
-        }
-        comedor.add(h);
-        interfaz.mostrarComedor(lista(comedor));
-    }
-    
-    public synchronized void depositarComedor(Hormiga h) throws InterruptedException {
-        verificarPausa();
-        comidaComedor += 5;
-        interfaz.unidadesComedor(comidaComedor.toString());
-        //Liberar bloqueos para los que esperan para comer
-        notifyAll();
-     }
-    
-    public synchronized void comerComedor(Hormiga h) throws InterruptedException {
-        verificarPausa();
-        while (comidaComedor < 1){
-            //Se bloquea hasta que traigan comida para comer
-            wait();
-        }
-        comidaComedor--;    //Consume 1 unidad de alimento
-        interfaz.unidadesComedor(comidaComedor.toString());
-    }
-
-    public synchronized void salirComedor(Hormiga h) throws InterruptedException {
-        verificarPausa();
-        if(h instanceof Cria){ 
-            criasComiendo--;
-        }
-        comedor.remove(h);
-        interfaz.mostrarComedor(lista(comedor));
-    }
-    
-    
+    // ZONA DE DESCANSO
     public synchronized void entrarZonaDescanso(Hormiga h) throws InterruptedException {
-        verificarPausa();
+        pausa.verificarPausa();
         zonaDescanso.add(h);
         interfaz.mostrarDescanso(lista(zonaDescanso));
     }
 
     public synchronized void salirZonaDescanso(Hormiga h) throws InterruptedException {
-        verificarPausa();
+        pausa.verificarPausa();
         zonaDescanso.remove(h);
         interfaz.mostrarDescanso(lista(zonaDescanso));
     }
     
-    
+    // ZONA DE INSTRUCCION
     public synchronized void entrarInstruccion(Hormiga h) throws InterruptedException {
-        verificarPausa();
+        pausa.verificarPausa();
         soldadosIntruccion.add(h);
         interfaz.mostrarInstruccion(lista(soldadosIntruccion));
     }
 
     public synchronized void salirInstruccion(Hormiga h) throws InterruptedException {
-        verificarPausa();
+        pausa.verificarPausa();
         soldadosIntruccion.remove(h);
         interfaz.mostrarInstruccion(lista(soldadosIntruccion));
     }
     
-    
+    // REFUGIO
     public synchronized void entrarRefugio(Hormiga h) throws InterruptedException {
-        verificarPausa();
+        pausa.verificarPausa();
         criasRefugio.add(h);
         interfaz.mostarRefugio(lista(criasRefugio));
     }
 
     public synchronized void salirRefugio(Hormiga h) throws InterruptedException {
-        verificarPausa();
+        pausa.verificarPausa();
         criasRefugio.remove(h);
         interfaz.mostarRefugio(lista(criasRefugio));
     }
@@ -250,10 +194,10 @@ public class Colonia {
         } catch (IOException e) {} 
     }
     
+    
     public synchronized void verificarInsecto() { 
         
     }
-    
     
     public synchronized void insecto() {
         if(insecto == true){
@@ -262,21 +206,6 @@ public class Colonia {
         else{
             insecto = true;
         }
-    }
-    
-    public synchronized void verificarPausa() throws InterruptedException {
-        while (detenido) {
-            wait();
-        }
-    }
-
-    public synchronized void pausar() {
-        detenido = true;
-    }
-
-    public synchronized void reanudar() {
-        detenido = false;
-        notifyAll();
     }
 }
 

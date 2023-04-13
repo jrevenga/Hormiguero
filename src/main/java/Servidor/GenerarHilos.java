@@ -29,7 +29,7 @@ public class GenerarHilos extends Thread{
             try {
                 // Calcular el tiempo de espera aleatorio
                 int tiempoEspera = (new Random().nextInt(2700) + 800);
-                colonia.verificarPausa();
+                colonia.getPausa().verificarPausa();
                 // Crear una obrera
                 Obrera obrera = new Obrera(obrerasCreadas, colonia);
                 obrera.start();
@@ -38,13 +38,13 @@ public class GenerarHilos extends Thread{
                 Thread.sleep(tiempoEspera);
                 
                 if (obrerasCreadas % 3 == 0) {
-                    colonia.verificarPausa();
+                    colonia.getPausa().verificarPausa();
                     // Crear una soldado y una cría
                     Soldado soldado = new Soldado(soldadosCreados, colonia);
                     soldado.start();
                     
                     Thread.sleep(tiempoEspera);
-                    colonia.verificarPausa();
+                    colonia.getPausa().verificarPausa();
                     Cria cria = new Cria(soldadosCreados, colonia);
                     cria.start();
                     soldadosCreados++;

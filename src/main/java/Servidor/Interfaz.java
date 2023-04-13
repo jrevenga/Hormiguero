@@ -345,11 +345,11 @@ public class Interfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonPausarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPausarActionPerformed
-        colonia.pausar();
+        colonia.getPausa().pausar();
     }//GEN-LAST:event_botonPausarActionPerformed
 
     private void botonReanudarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReanudarActionPerformed
-        colonia.reanudar();
+        colonia.getPausa().reanudar();
     }//GEN-LAST:event_botonReanudarActionPerformed
 
     private void botonInsectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInsectoActionPerformed

@@ -21,19 +21,19 @@ public abstract class Hormiga extends Thread {
         this.tipo = tipo;
         this.id = id;
         this.colonia = colonia;
-        iteraciones = 0;
+        this.iteraciones = 0;
     }
     
     public void comer(int tiempo) throws InterruptedException {
         //Entrar ZONA PARA COMER
-        colonia.entrarComedor(this);
-        colonia.comerComedor(this);
+        colonia.getComedor().entrar(this);
+        colonia.getComedor().comer();
         colonia.escribirEnLog("La hormiga " + tipo + id + " come un alimento");
         try {
             Thread.sleep(tiempo);
         } catch (InterruptedException ex) {}
         //Salir ZONA PARA COMER
-        colonia.salirComedor(this);
+        colonia.getComedor().salir(this);
     }
     
     public void descansar(int tiempo) throws InterruptedException{
