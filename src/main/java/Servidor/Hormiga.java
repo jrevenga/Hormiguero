@@ -5,6 +5,8 @@
  */
 package Servidor;
 
+import java.util.Random;
+
 
 /**
  *
@@ -22,6 +24,28 @@ public abstract class Hormiga extends Thread {
         this.id = id;
         this.colonia = colonia;
         this.iteraciones = 0;
+    }
+    
+    public void entrar() throws InterruptedException{
+        colonia.getEntrada().entrarTunel();
+        Thread.sleep(100);
+        colonia.getEntrada().salirTunel();
+        colonia.entrarColonia(this);
+    }
+    
+    public void salir() throws InterruptedException{
+        int salida = new Random().nextInt(2);
+        if(salida == 0){
+            colonia.getSalida1().entrarTunel();
+            Thread.sleep(100);
+            colonia.getSalida1().salirTunel();
+        }
+        else{
+            colonia.getSalida2().entrarTunel();
+            Thread.sleep(100);
+            colonia.getSalida2().salirTunel();
+        }
+        colonia.salirColonia(this);
     }
     
     public void comer(int tiempo) throws InterruptedException {
@@ -42,4 +66,5 @@ public abstract class Hormiga extends Thread {
         //Salir ZONA DE DESCANSO
         colonia.salirZonaDescanso(this);
     }
+    
 }

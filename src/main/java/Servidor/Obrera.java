@@ -23,7 +23,7 @@ public class Obrera extends Hormiga {
     @Override
     public void run() {
         try {
-            colonia.entrarColonia(this);
+            entrar();
             while(true){
                 if(iteraciones == 10){
                     comer(3000);
@@ -68,10 +68,10 @@ public class Obrera extends Hormiga {
     }
     
     private void recoleztarComida() throws InterruptedException{
-        colonia.salirColonia(this);
+        salir();
         colonia.escribirEnLog("La hormiga obrera " + tipo + id + " sale a buscar comida");
         Thread.sleep(4000);
-        colonia.entrarColonia(this);
+        entrar();
         colonia.escribirEnLog("La hormiga obrera " + tipo + id + " vuelve de recoleztar comida");
     }
     
