@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 public class Colonia {
@@ -61,18 +62,6 @@ public class Colonia {
         return pausa;
     }
 
-    public Tunel getEntrada() {
-        return entrada;
-    }
-
-    public Tunel getSalida1() {
-        return salida1;
-    }
-
-    public Tunel getSalida2() {
-        return salida2;
-    }
-
     public Comedor getComedor() {
         return comedor;
     }
@@ -112,6 +101,7 @@ public class Colonia {
     
     public synchronized void entrarColonia(Hormiga h) throws InterruptedException {
         pausa.verificarPausa();
+        entrada.cruzarTunel();
         if(h instanceof Obrera){
             obrerasExterior.remove(h);
             obrerasInterior++;
@@ -121,6 +111,13 @@ public class Colonia {
 
     public synchronized void salirColonia(Hormiga h) throws InterruptedException {
         pausa.verificarPausa();
+        int salida = new Random().nextInt(2);
+        if(salida == 0){
+            salida1.cruzarTunel();
+        }
+        else{
+            salida2.cruzarTunel();
+        }
         if(h instanceof Obrera){
             obrerasInterior--;
             obrerasExterior.add(h);

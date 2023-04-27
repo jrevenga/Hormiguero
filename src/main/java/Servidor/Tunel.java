@@ -14,16 +14,18 @@ import java.util.concurrent.Semaphore;
 public class Tunel {
 
     private Semaphore semaforo;
+    private static final int TIEMPO_CRUZAR = 100;
 
     public Tunel() {
         semaforo = new Semaphore(1, true);
     }
     
-    public void entrarTunel() throws InterruptedException {
-        semaforo.acquire();
-   }
-    public void salirTunel() {
-        semaforo.release();
+    public void cruzarTunel() {
+        try {
+            semaforo.acquire();
+            Thread.sleep(TIEMPO_CRUZAR);
+            semaforo.release();
+        } catch (InterruptedException e) {}
    }
 }
 
