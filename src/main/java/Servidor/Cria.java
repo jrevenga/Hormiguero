@@ -6,6 +6,8 @@
 package Servidor;
 
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,12 +23,29 @@ public class Cria extends Hormiga {
     public void run() {
         
         try {
-            colonia.entrarColonia(this);
-            while(true){
-                int tiempo = new Random().nextInt(2000) + 3000;
-                comer(tiempo);
-                descansar(4000);
+            if (colonia.verificarInsecto()) {
+                this.interrupt();
+            } else {
+                if (!colonia.getListaCrias().contains(this)) {
+                    colonia.getListaCrias().add(this);
+                }
+                colonia.entrarColonia(this);
+                while (true) {
+                    int tiempo = new Random().nextInt(2000) + 3000;
+                    comer(tiempo);
+                    descansar(4000);
+                }
             }
-        } catch (InterruptedException ex) {}
+        } catch (InterruptedException ex) {
+            try {
+                colonia.entrarRefugio(this);
+                System.out.println("Entrar Refugio");
+                while (colonia.verificarInsecto()){
+                    //Mientras haya insecto no puede salir CREAR MONITOR O LO QUE SEA
+                }
+                System.out.println("Salir Refugio");
+                colonia.salirRefugio(this);
+            } catch (InterruptedException ex1) {}
+        }
     }
 }

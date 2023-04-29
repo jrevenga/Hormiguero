@@ -17,6 +17,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
 import javax.swing.JOptionPane;
 
 public class Colonia {
@@ -24,10 +26,12 @@ public class Colonia {
     private final Comedor comedor;
     private final Almacen almacen;
     private final Pausa pausa;
-    private final List<Hormiga> obrerasExterior, soldadosInvasion, transporte, soldadosIntruccion, zonaDescanso, criasRefugio;
-    private Integer obrerasInterior, comidaAlmacen;
+    private final List<Hormiga> obrerasExterior, soldadosInvasion, transporte, soldadosIntruccion, zonaDescanso, criasRefugio,
+            listaSoldados, listaSoldadosCombate, listaCrias;
+    private Integer obrerasInterior, comidaAlmacen, contador;
     private boolean insecto;
     private final Interfaz interfaz;
+    private CyclicBarrier invasion;
     private FileWriter logWriter;
     private final PrintWriter pw;
     private final DateTimeFormatter dtf;
@@ -45,6 +49,9 @@ public class Colonia {
         this.soldadosIntruccion = new ArrayList<>();
         this.zonaDescanso = new ArrayList<>();
         this.criasRefugio = new ArrayList<>();
+        this.listaCrias = new ArrayList<>();
+        this.listaSoldados = new ArrayList<>();
+        this.listaSoldadosCombate = new ArrayList<>();;
         this.obrerasInterior = 0;
         this.comidaAlmacen = 0;
         this.insecto = false;
@@ -97,7 +104,18 @@ public class Colonia {
     public Integer getCriasRefugio() {
         return criasRefugio.size();
     }
-    
+
+    public List<Hormiga> getListaSoldados() {
+        return listaSoldados;
+    }
+
+    public List<Hormiga> getListaSoldadosCombate() {
+        return listaSoldadosCombate;
+    }
+
+    public List<Hormiga> getListaCrias() {
+        return listaCrias;
+    }    
     
     public synchronized void entrarColonia(Hormiga h) throws InterruptedException {
         pausa.verificarPausa();
@@ -195,8 +213,8 @@ public class Colonia {
     }
     
     
-    public synchronized void verificarInsecto() { 
-        
+    public synchronized boolean verificarInsecto() { 
+        return insecto;
     }
     
     public synchronized void insecto() {
@@ -205,7 +223,27 @@ public class Colonia {
         }
         else{
             insecto = true;
+            interrumpirHilos();
         }
+    }
+    
+    public void interrumpirHilos() {
+        for (int i = 0; i < listaCrias.size(); i++) {
+            listaCrias.get(i).interrupt();
+        }
+        
+        contador = listaSoldadosCombate.size();
+        invasion = new CyclicBarrier(contador);
+        for (int i = 0; i < listaSoldadosCombate.size(); i++) {
+            listaSoldadosCombate.get(i).interrupt();
+        }
+    }
+    
+    public void combatirInsecto(Hormiga h) throws InterruptedException, BrokenBarrierException {
+        pausa.verificarPausa();
+        soldadosInvasion.add(h);
+        interfaz.mostrarSoldadosInsecto(lista(soldadosInvasion));
+        invasion.await();
     }
 }
 

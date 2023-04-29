@@ -6,6 +6,9 @@
 package Servidor;
 
 import java.util.Random;
+import java.util.concurrent.BrokenBarrierException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,24 +22,34 @@ public class Soldado extends Hormiga {
 
     @Override
     public void run() {
-        
+        if (!colonia.getListaSoldados().contains(this) && !colonia.getListaSoldadosCombate().contains(this)) {
+            if (colonia.verificarInsecto()) {
+                colonia.getListaSoldados().add(this);
+            } else {
+                colonia.getListaSoldadosCombate().add(this);
+            }
+        }
         try {
             colonia.entrarColonia(this);
-            while(true){
-                if(iteraciones == 6){
+            while (true) {
+                if (iteraciones == 6) {
                     iteraciones = 0;
                     int tiempo = new Random().nextInt(2000) + 3000;
                     comer(tiempo);
-                }
-                else{
+                } else {
                     hacerInstruccion();
                     descansar(2000);
                 }
             }
-        } catch (InterruptedException ex) {}
+        } catch (InterruptedException ex) {
+            try {
+                colonia.combatirInsecto(this);
+                sleep(1000);
+            } catch (InterruptedException | BrokenBarrierException ex1) {}
+        }
     }
-    
-    private void hacerInstruccion() throws InterruptedException{
+
+    private void hacerInstruccion() throws InterruptedException {
         //verificarInsecto();
         //Entrar ZONA DE INSTRUCCIÓN
         colonia.entrarInstruccion(this);
@@ -46,4 +59,3 @@ public class Soldado extends Hormiga {
         colonia.salirInstruccion(this);
     }
 }
-
