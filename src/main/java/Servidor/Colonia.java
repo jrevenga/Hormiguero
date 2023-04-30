@@ -221,7 +221,7 @@ public class Colonia {
         insecto.eliminarAmenaza();
     }
     
-    
+    // OTROS
     private synchronized String lista(List<Hormiga> lista) {
         String contenido = "";
         for (int i = 0; i < lista.size(); i++) {
