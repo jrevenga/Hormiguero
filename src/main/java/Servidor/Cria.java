@@ -19,14 +19,36 @@ public class Cria extends Hormiga {
 
     @Override
     public void run() {
-        
         try {
             colonia.entrarColonia(this);
-            while(true){
+        } catch (InterruptedException ex) {}
+
+        if (colonia.getInsecto().isAmenazaActiva()) {
+            this.interrupt();
+        }
+
+        while (true) {
+            try {
                 int tiempo = new Random().nextInt(2000) + 3000;
                 comer(tiempo);
                 descansar(4000);
+            } catch (InterruptedException ex) {
+                try {
+                    refugiarse();   // Redirigir al refugio si se recibe una interrupción
+                    this.isInterrupted(); // Volver a runnable
+                } catch (InterruptedException ex1) {}
             }
-        } catch (InterruptedException ex) {}
+        }
+    }
+
+    private void refugiarse() throws InterruptedException {
+        colonia.getComedor().salir(this);
+        colonia.salirZonaDescanso(this);
+        // Acudir a la zona de refugio
+        colonia.entrarRefugio(this);
+        colonia.escribirEnLog("La hormiga cria " + tipo + id + " entra al refugio");
+        colonia.getInsecto().esperarAmenazaDesaparezca();
+        colonia.salirRefugio(this);
+        colonia.escribirEnLog("La hormiga cria " + tipo + id + " deja el refugio");
     }
 }

@@ -1,0 +1,205 @@
+2023/04/30 22:57:03 - La hormiga obrera HO1 sale a buscar comida
+2023/04/30 22:57:05 - La hormiga obrera HO2 sale a buscar comida
+2023/04/30 22:57:06 - La hormiga soldado HS1 comienza a hacer instrucción
+2023/04/30 22:57:07 - La hormiga obrera HO1 vuelve de recoleztar comida
+2023/04/30 22:57:09 - La hormiga obrera HO2 vuelve de recoleztar comida
+2023/04/30 22:57:09 - La hormiga HS1 descansa
+2023/04/30 22:57:11 - La hormiga obrera HO4 sale a buscar comida
+2023/04/30 22:57:11 - La hormiga soldado HS1 comienza a hacer instrucción
+2023/04/30 22:57:11 - La hormiga obrera HO1 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:11 - La hormiga obrera HO3 coge comida del ALMACÉN DE COMIDA
+2023/04/30 22:57:11 - La hormiga obrera HO1 sale a buscar comida
+2023/04/30 22:57:12 - La hormiga obrera HO2 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:12 - La hormiga obrera HO2 sale a buscar comida
+2023/04/30 22:57:13 - La hormiga obrera HO5 sale a buscar comida
+2023/04/30 22:57:15 - La hormiga obrera HO4 vuelve de recoleztar comida
+2023/04/30 22:57:15 - La hormiga obrera HO1 vuelve de recoleztar comida
+2023/04/30 22:57:16 - La hormiga soldado HS2 comienza a hacer instrucción
+2023/04/30 22:57:16 - La hormiga obrera HO2 vuelve de recoleztar comida
+2023/04/30 22:57:16 - La hormiga HC1 come un alimento
+2023/04/30 22:57:16 - La hormiga obrera HO3 deposita comida en la ZONA PARA COMER
+2023/04/30 22:57:17 - La hormiga HS1 descansa
+2023/04/30 22:57:18 - La hormiga obrera HO5 vuelve de recoleztar comida
+2023/04/30 22:57:18 - La hormiga obrera HO4 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:18 - La hormiga obrera HO4 sale a buscar comida
+2023/04/30 22:57:18 - La hormiga obrera HO3 coge comida del ALMACÉN DE COMIDA
+2023/04/30 22:57:18 - La hormiga HC2 come un alimento
+2023/04/30 22:57:19 - La hormiga soldado HS1 comienza a hacer instrucción
+2023/04/30 22:57:19 - La hormiga HS2 descansa
+2023/04/30 22:57:19 - La hormiga obrera HO1 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:19 - La hormiga obrera HO1 sale a buscar comida
+2023/04/30 22:57:19 - La hormiga obrera HO6 coge comida del ALMACÉN DE COMIDA
+2023/04/30 22:57:19 - La hormiga obrera HO2 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:20 - La hormiga obrera HO2 sale a buscar comida
+2023/04/30 22:57:20 - La hormiga obrera HO7 sale a buscar comida
+2023/04/30 22:57:20 - La hormiga obrera HO3 deposita comida en la ZONA PARA COMER
+2023/04/30 22:57:20 - La hormiga obrera HO5 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:20 - La hormiga obrera HO5 sale a buscar comida
+2023/04/30 22:57:21 - La hormiga HC1 descansa
+2023/04/30 22:57:21 - La hormiga soldado HS2 comienza a hacer instrucción
+2023/04/30 22:57:21 - La hormiga obrera HO3 coge comida del ALMACÉN DE COMIDA
+2023/04/30 22:57:22 - La hormiga obrera HO4 vuelve de recoleztar comida
+2023/04/30 22:57:22 - La hormiga obrera HO6 deposita comida en la ZONA PARA COMER
+2023/04/30 22:57:22 - La hormiga HC2 descansa
+2023/04/30 22:57:23 - La hormiga obrera HO8 sale a buscar comida
+2023/04/30 22:57:24 - La hormiga obrera HO1 vuelve de recoleztar comida
+2023/04/30 22:57:24 - La hormiga obrera HO2 vuelve de recoleztar comida
+2023/04/30 22:57:24 - La hormiga obrera HO6 coge comida del ALMACÉN DE COMIDA
+2023/04/30 22:57:24 - La hormiga soldado HS2 sale de la colonia
+2023/04/30 22:57:24 - La hormiga soldado HS2 lucha contra el INSECTO INVASOR
+2023/04/30 22:57:24 - La hormiga obrera HO7 vuelve de recoleztar comida
+2023/04/30 22:57:24 - La hormiga soldado HS1 sale de la colonia
+2023/04/30 22:57:24 - La hormiga soldado HS1 lucha contra el INSECTO INVASOR
+2023/04/30 22:57:24 - La hormiga cria HC1 entra al refugio
+2023/04/30 22:57:24 - La hormiga cria HC2 entra al refugio
+2023/04/30 22:57:25 - La hormiga obrera HO5 vuelve de recoleztar comida
+2023/04/30 22:57:25 - La hormiga obrera HO3 deposita comida en la ZONA PARA COMER
+2023/04/30 22:57:25 - La hormiga obrera HO4 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:25 - La hormiga obrera HO4 sale a buscar comida
+2023/04/30 22:57:26 - La hormiga obrera HO1 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:26 - La hormiga obrera HO1 sale a buscar comida
+2023/04/30 22:57:26 - La hormiga soldado HS3 comienza a hacer instrucción
+2023/04/30 22:57:26 - La hormiga obrera HO6 deposita comida en la ZONA PARA COMER
+2023/04/30 22:57:27 - La hormiga obrera HO3 coge comida del ALMACÉN DE COMIDA
+2023/04/30 22:57:27 - La hormiga obrera HO2 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:27 - La hormiga obrera HO2 sale a buscar comida
+2023/04/30 22:57:27 - La hormiga obrera HO8 vuelve de recoleztar comida
+2023/04/30 22:57:27 - La hormiga obrera HO7 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:27 - La hormiga obrera HO7 sale a buscar comida
+2023/04/30 22:57:27 - La hormiga obrera HO5 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:28 - La hormiga obrera HO5 sale a buscar comida
+2023/04/30 22:57:28 - La hormiga obrera HO6 coge comida del ALMACÉN DE COMIDA
+2023/04/30 22:57:29 - La hormiga obrera HO8 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:29 - La hormiga HC3 come un alimento
+2023/04/30 22:57:29 - La hormiga cria HC3 entra al refugio
+2023/04/30 22:57:29 - La hormiga obrera HO8 sale a buscar comida
+2023/04/30 22:57:29 - La hormiga obrera HO4 vuelve de recoleztar comida
+2023/04/30 22:57:30 - La hormiga obrera HO1 vuelve de recoleztar comida
+2023/04/30 22:57:30 - La hormiga obrera HO3 deposita comida en la ZONA PARA COMER
+2023/04/30 22:57:31 - La hormiga obrera HO9 coge comida del ALMACÉN DE COMIDA
+2023/04/30 22:57:31 - La hormiga HS3 descansa
+2023/04/30 22:57:31 - La hormiga obrera HO2 vuelve de recoleztar comida
+2023/04/30 22:57:31 - La hormiga obrera HO6 deposita comida en la ZONA PARA COMER
+2023/04/30 22:57:31 - La hormiga obrera HO10 sale a buscar comida
+2023/04/30 22:57:32 - La hormiga obrera HO7 vuelve de recoleztar comida
+2023/04/30 22:57:32 - La hormiga obrera HO3 coge comida del ALMACÉN DE COMIDA
+2023/04/30 22:57:32 - La hormiga obrera HO5 vuelve de recoleztar comida
+2023/04/30 22:57:32 - La hormiga obrera HO1 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:32 - La hormiga obrera HO1 sale a buscar comida
+2023/04/30 22:57:33 - La hormiga soldado HS3 comienza a hacer instrucción
+2023/04/30 22:57:33 - La hormiga obrera HO11 sale a buscar comida
+2023/04/30 22:57:33 - La hormiga obrera HO6 coge comida del ALMACÉN DE COMIDA
+2023/04/30 22:57:33 - La hormiga obrera HO4 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:33 - La hormiga obrera HO4 sale a buscar comida
+2023/04/30 22:57:33 - La hormiga obrera HO8 vuelve de recoleztar comida
+2023/04/30 22:57:33 - La hormiga obrera HO2 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:33 - La hormiga obrera HO2 sale a buscar comida
+2023/04/30 22:57:34 - La hormiga obrera HO7 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:34 - La hormiga obrera HO7 sale a buscar comida
+2023/04/30 22:57:35 - La hormiga obrera HO9 deposita comida en la ZONA PARA COMER
+2023/04/30 22:57:35 - La hormiga obrera HO3 deposita comida en la ZONA PARA COMER
+2023/04/30 22:57:35 - La hormiga obrera HO10 vuelve de recoleztar comida
+2023/04/30 22:57:36 - La hormiga soldado HS4 comienza a hacer instrucción
+2023/04/30 22:57:36 - La hormiga obrera HO5 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:36 - La hormiga obrera HO5 sale a buscar comida
+2023/04/30 22:57:36 - La hormiga obrera HO9 coge comida del ALMACÉN DE COMIDA
+2023/04/30 22:57:36 - La hormiga obrera HO8 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:36 - La hormiga obrera HO8 sale a buscar comida
+2023/04/30 22:57:36 - La hormiga obrera HO1 vuelve de recoleztar comida
+2023/04/30 22:57:37 - La hormiga obrera HO3 coge comida del ALMACÉN DE COMIDA
+2023/04/30 22:57:37 - La hormiga obrera HO6 deposita comida en la ZONA PARA COMER
+2023/04/30 22:57:37 - La hormiga obrera HO11 vuelve de recoleztar comida
+2023/04/30 22:57:37 - La hormiga obrera HO4 vuelve de recoleztar comida
+2023/04/30 22:57:38 - La hormiga obrera HO2 vuelve de recoleztar comida
+2023/04/30 22:57:38 - La hormiga obrera HO7 vuelve de recoleztar comida
+2023/04/30 22:57:38 - La hormiga HC4 come un alimento
+2023/04/30 22:57:38 - La hormiga HS3 descansa
+2023/04/30 22:57:38 - La hormiga cria HC4 entra al refugio
+2023/04/30 22:57:38 - La hormiga obrera HO10 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:38 - La hormiga obrera HO10 sale a buscar comida
+2023/04/30 22:57:38 - La hormiga obrera HO6 coge comida del ALMACÉN DE COMIDA
+2023/04/30 22:57:38 - La hormiga obrera HO1 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:38 - La hormiga obrera HO1 sale a buscar comida
+2023/04/30 22:57:39 - La hormiga obrera HO9 deposita comida en la ZONA PARA COMER
+2023/04/30 22:57:39 - La hormiga obrera HO12 coge comida del ALMACÉN DE COMIDA
+2023/04/30 22:57:39 - La hormiga obrera HO3 deposita comida en la ZONA PARA COMER
+2023/04/30 22:57:40 - La hormiga obrera HO5 vuelve de recoleztar comida
+2023/04/30 22:57:40 - La hormiga obrera HO8 vuelve de recoleztar comida
+2023/04/30 22:57:40 - La hormiga HS4 descansa
+2023/04/30 22:57:40 - La hormiga soldado HS3 comienza a hacer instrucción
+2023/04/30 22:57:40 - La hormiga obrera HO7 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:41 - La hormiga obrera HO7 sale a buscar comida
+2023/04/30 22:57:41 - La hormiga obrera HO4 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:41 - La hormiga obrera HO4 sale a buscar comida
+2023/04/30 22:57:41 - La hormiga obrera HO2 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:41 - La hormiga obrera HO2 sale a buscar comida
+2023/04/30 22:57:41 - La hormiga obrera HO3 coge comida del ALMACÉN DE COMIDA
+2023/04/30 22:57:41 - La hormiga obrera HO9 coge comida del ALMACÉN DE COMIDA
+2023/04/30 22:57:41 - La hormiga obrera HO11 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:41 - La hormiga obrera HO11 sale a buscar comida
+2023/04/30 22:57:41 - La hormiga obrera HO13 sale a buscar comida
+2023/04/30 22:57:42 - La hormiga obrera HO5 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:42 - La hormiga obrera HO5 sale a buscar comida
+2023/04/30 22:57:42 - La hormiga soldado HS4 comienza a hacer instrucción
+2023/04/30 22:57:42 - La hormiga obrera HO10 vuelve de recoleztar comida
+2023/04/30 22:57:43 - La hormiga obrera HO1 vuelve de recoleztar comida
+2023/04/30 22:57:43 - La hormiga obrera HO8 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:43 - La hormiga obrera HO8 sale a buscar comida
+2023/04/30 22:57:43 - La hormiga obrera HO6 deposita comida en la ZONA PARA COMER
+2023/04/30 22:57:43 - La hormiga obrera HO12 deposita comida en la ZONA PARA COMER
+2023/04/30 22:57:44 - La hormiga soldado HS2 vuelve a la colonia
+2023/04/30 22:57:44 - La hormiga soldado HS2 comienza a hacer instrucción
+2023/04/30 22:57:44 - La hormiga obrera HO14 sale a buscar comida
+2023/04/30 22:57:44 - La hormiga obrera HO12 coge comida del ALMACÉN DE COMIDA
+2023/04/30 22:57:44 - La hormiga obrera HO3 deposita comida en la ZONA PARA COMER
+2023/04/30 22:57:44 - La hormiga cria HC1 deja el refugio
+2023/04/30 22:57:44 - La hormiga cria HC2 deja el refugio
+2023/04/30 22:57:44 - La hormiga HC2 come un alimento
+2023/04/30 22:57:44 - La hormiga cria HC4 deja el refugio
+2023/04/30 22:57:44 - La hormiga cria HC3 deja el refugio
+2023/04/30 22:57:44 - La hormiga HC4 come un alimento
+2023/04/30 22:57:44 - La hormiga HC1 come un alimento
+2023/04/30 22:57:44 - La hormiga obrera HO6 coge comida del ALMACÉN DE COMIDA
+2023/04/30 22:57:44 - La hormiga soldado HS1 vuelve a la colonia
+2023/04/30 22:57:44 - La hormiga soldado HS1 comienza a hacer instrucción
+2023/04/30 22:57:44 - La hormiga HC3 come un alimento
+2023/04/30 22:57:44 - La hormiga obrera HO9 deposita comida en la ZONA PARA COMER
+2023/04/30 22:57:45 - La hormiga obrera HO7 vuelve de recoleztar comida
+2023/04/30 22:57:45 - La hormiga obrera HO4 vuelve de recoleztar comida
+2023/04/30 22:57:45 - La hormiga obrera HO2 vuelve de recoleztar comida
+2023/04/30 22:57:45 - La hormiga obrera HO11 vuelve de recoleztar comida
+2023/04/30 22:57:45 - La hormiga obrera HO13 vuelve de recoleztar comida
+2023/04/30 22:57:46 - La hormiga soldado HS5 comienza a hacer instrucción
+2023/04/30 22:57:46 - La hormiga obrera HO3 coge comida del ALMACÉN DE COMIDA
+2023/04/30 22:57:46 - La hormiga HS3 descansa
+2023/04/30 22:57:46 - La hormiga obrera HO9 coge comida del ALMACÉN DE COMIDA
+2023/04/30 22:57:46 - La hormiga obrera HO10 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:46 - La hormiga obrera HO10 sale a buscar comida
+2023/04/30 22:57:46 - La hormiga obrera HO1 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:46 - La hormiga obrera HO5 vuelve de recoleztar comida
+2023/04/30 22:57:46 - La hormiga obrera HO1 sale a buscar comida
+2023/04/30 22:57:47 - La hormiga obrera HO8 vuelve de recoleztar comida
+2023/04/30 22:57:47 - La hormiga obrera HO11 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:47 - La hormiga obrera HO11 sale a buscar comida
+2023/04/30 22:57:47 - La hormiga obrera HO6 deposita comida en la ZONA PARA COMER
+2023/04/30 22:57:47 - La hormiga HC2 descansa
+2023/04/30 22:57:47 - La hormiga HC5 come un alimento
+2023/04/30 22:57:48 - La hormiga HS4 descansa
+2023/04/30 22:57:48 - La hormiga HC4 descansa
+2023/04/30 22:57:48 - La hormiga obrera HO13 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:48 - La hormiga obrera HO13 sale a buscar comida
+2023/04/30 22:57:48 - La hormiga obrera HO7 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:48 - La hormiga obrera HO7 sale a buscar comida
+2023/04/30 22:57:48 - La hormiga soldado HS3 comienza a hacer instrucción
+2023/04/30 22:57:48 - La hormiga obrera HO12 deposita comida en la ZONA PARA COMER
+2023/04/30 22:57:48 - La hormiga obrera HO4 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:48 - La hormiga obrera HO4 sale a buscar comida
+2023/04/30 22:57:48 - La hormiga obrera HO14 vuelve de recoleztar comida
+2023/04/30 22:57:48 - La hormiga obrera HO2 deposita comida en EL AlMACEN DE COMIDA
+2023/04/30 22:57:48 - La hormiga obrera HO2 sale a buscar comida
+2023/04/30 22:57:49 - La hormiga obrera HO6 coge comida del ALMACÉN DE COMIDA
+2023/04/30 22:57:49 - La hormiga HC3 descansa
+2023/04/30 22:57:49 - La hormiga HS2 descansa
+2023/04/30 22:57:49 - La hormiga HC1 descansa
+2023/04/30 22:57:49 - La hormiga obrera HO15 coge comida del ALMACÉN DE COMIDA
+2023/04/30 22:57:49 - La hormiga obrera HO5 deposita comida en EL AlMACEN DE COMIDA

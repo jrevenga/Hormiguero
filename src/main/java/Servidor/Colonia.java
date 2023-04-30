@@ -17,6 +17,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
 import javax.swing.JOptionPane;
 
 public class Colonia {
@@ -24,13 +26,14 @@ public class Colonia {
     private final Comedor comedor;
     private final Almacen almacen;
     private final Pausa pausa;
-    private final List<Hormiga> obrerasExterior, soldadosInvasion, transporte, soldadosIntruccion, zonaDescanso, criasRefugio;
+    private final InsectoInvasor insecto;
+    private final List<Hormiga> obrerasExterior, soldadosInvasion, transporte, soldadosIntruccion, zonaDescanso, soldadosColonia, criasColonia ,criasRefugio;
     private Integer obrerasInterior, comidaAlmacen;
-    private boolean insecto;
     private final Interfaz interfaz;
     private FileWriter logWriter;
     private final PrintWriter pw;
     private final DateTimeFormatter dtf;
+    private CyclicBarrier invasion;
 
     public Colonia(Interfaz interfaz) {
         this.entrada = new Tunel();
@@ -39,15 +42,17 @@ public class Colonia {
         this.pausa = new Pausa();
         this.comedor = new Comedor(this);
         this.almacen = new Almacen(this);
+        this.insecto = new InsectoInvasor();
         this.obrerasExterior = new ArrayList<>();
         this.soldadosInvasion = new ArrayList<>();
         this.transporte = new ArrayList<>();
         this.soldadosIntruccion = new ArrayList<>();
         this.zonaDescanso = new ArrayList<>();
+        this.soldadosColonia = new ArrayList<>();
+        this.criasColonia = new ArrayList<>();
         this.criasRefugio = new ArrayList<>();
         this.obrerasInterior = 0;
         this.comidaAlmacen = 0;
-        this.insecto = false;
         this.interfaz = interfaz;
         this.dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         try {
@@ -72,6 +77,10 @@ public class Colonia {
 
     public Interfaz getInterfaz() {
         return interfaz;
+    }
+
+    public InsectoInvasor getInsecto() {
+        return insecto;
     }
 
     public Integer getObrerasExterior() {
@@ -105,6 +114,10 @@ public class Colonia {
         if(h instanceof Obrera){
             obrerasExterior.remove(h);
             obrerasInterior++;
+        }else if (h instanceof Soldado){
+            soldadosColonia.add(h);
+        }else {
+            criasColonia.add(h);
         }
         interfaz.mostrarObrerasExterior(lista(obrerasExterior));
     }
@@ -121,8 +134,10 @@ public class Colonia {
         if(h instanceof Obrera){
             obrerasInterior--;
             obrerasExterior.add(h);
+            interfaz.mostrarObrerasExterior(lista(obrerasExterior));
+        }else {
+            soldadosColonia.remove(h);
         }
-        interfaz.mostrarObrerasExterior(lista(obrerasExterior));
     }
     
     // Transporte entre ALMACEN y COMEDOR
@@ -175,6 +190,35 @@ public class Colonia {
         pausa.verificarPausa();
         criasRefugio.remove(h);
         interfaz.mostarRefugio(lista(criasRefugio));
+        h.isInterrupted();
+    }
+    
+    // INSECTO INVASOR
+    public synchronized void insecto() throws InterruptedException {
+        pausa.verificarPausa();
+        if(insecto.isAmenazaActiva() == true){
+            JOptionPane.showMessageDialog(null, "Ya hay un insecto atacando la colonia");
+        }
+        else{
+            invasion = new CyclicBarrier(soldadosColonia.size());
+            insecto.generarAmenaza();
+            insecto.interrumpirHormigas(criasColonia);
+            insecto.interrumpirHormigas(soldadosColonia);
+        }
+    }
+    
+    public synchronized void esperarSoldados(Hormiga h) throws InterruptedException, BrokenBarrierException {
+        pausa.verificarPausa();
+        soldadosInvasion.add(h);
+        interfaz.mostrarSoldadosInsecto(lista(soldadosInvasion));
+        //invasion.await();
+    }
+    
+    public synchronized void exito(Hormiga h) throws InterruptedException {
+        pausa.verificarPausa();
+        soldadosInvasion.remove(h);
+        interfaz.mostrarSoldadosInsecto(lista(soldadosInvasion));
+        insecto.eliminarAmenaza();
     }
     
     
@@ -194,19 +238,5 @@ public class Colonia {
         } catch (IOException e) {} 
     }
     
-    
-    public synchronized void verificarInsecto() { 
-        
-    }
-    
-    public synchronized void insecto() {
-        if(insecto == true){
-            JOptionPane.showMessageDialog(null, "Ya hay un insecto atacando la colonia");
-        }
-        else{
-            insecto = true;
-        }
-    }
 }
-
 

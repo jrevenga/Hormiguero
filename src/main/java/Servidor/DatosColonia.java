@@ -53,7 +53,9 @@ public class DatosColonia extends UnicastRemoteObject implements InterfazRemota 
 
     @Override
     public void generarInsecto() throws RemoteException {
-        colonia.insecto();
+        try {
+            colonia.insecto();
+        } catch (InterruptedException ex) {}
     }
 
     

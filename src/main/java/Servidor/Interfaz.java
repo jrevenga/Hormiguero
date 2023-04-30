@@ -353,7 +353,9 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_botonReanudarActionPerformed
 
     private void botonInsectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInsectoActionPerformed
-        colonia.insecto();
+        try {
+            colonia.insecto();
+        } catch (InterruptedException ex) {}
     }//GEN-LAST:event_botonInsectoActionPerformed
 
     /**
