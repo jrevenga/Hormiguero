@@ -22,12 +22,14 @@ import java.util.concurrent.CyclicBarrier;
 import javax.swing.JOptionPane;
 
 public class Colonia {
+
     private final Tunel entrada, salida1, salida2;
     private final Comedor comedor;
     private final Almacen almacen;
     private final Pausa pausa;
     private final InsectoInvasor insecto;
-    private final List<Hormiga> obrerasExterior, soldadosInvasion, transporte, soldadosIntruccion, zonaDescanso, soldadosColonia, criasColonia ,criasRefugio;
+    private final List<Hormiga> obrerasExterior, soldadosInvasion, transporte, soldadosIntruccion, zonaDescanso,
+            soldadosColonia, soldadosColoniaAux, criasColonia, criasRefugio;
     private Integer obrerasInterior, comidaAlmacen;
     private final Interfaz interfaz;
     private FileWriter logWriter;
@@ -49,6 +51,7 @@ public class Colonia {
         this.soldadosIntruccion = new ArrayList<>();
         this.zonaDescanso = new ArrayList<>();
         this.soldadosColonia = new ArrayList<>();
+        this.soldadosColoniaAux = new ArrayList<>();
         this.criasColonia = new ArrayList<>();
         this.criasRefugio = new ArrayList<>();
         this.obrerasInterior = 0;
@@ -57,7 +60,8 @@ public class Colonia {
         this.dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         try {
             this.logWriter = new FileWriter("evolucionHormiguero.txt");
-        } catch (IOException ex) {}
+        } catch (IOException ex) {
+        }
         this.pw = new PrintWriter(logWriter);
         interfaz.unidadesAlmacen(comidaAlmacen.toString());
         interfaz.unidadesComedor(comedor.getComida().toString());
@@ -86,11 +90,11 @@ public class Colonia {
     public Integer getObrerasExterior() {
         return obrerasExterior.size();
     }
-    
+
     public Integer getObrerasInterior() {
         return obrerasInterior;
     }
-    
+
     public Integer getSoldadosIntruccion() {
         return soldadosIntruccion.size();
     }
@@ -106,17 +110,20 @@ public class Colonia {
     public Integer getCriasRefugio() {
         return criasRefugio.size();
     }
-    
-    
+
     public synchronized void entrarColonia(Hormiga h) throws InterruptedException {
         pausa.verificarPausa();
         entrada.cruzarTunel();
-        if(h instanceof Obrera){
+        if (h instanceof Obrera) {
             obrerasExterior.remove(h);
             obrerasInterior++;
-        }else if (h instanceof Soldado){
-            soldadosColonia.add(h);
-        }else {
+        } else if (h instanceof Soldado) {
+            if (insecto.isAmenazaActiva()) {
+                soldadosColoniaAux.add(h);
+            } else {
+                soldadosColonia.add(h);
+            }
+        } else {
             criasColonia.add(h);
         }
         interfaz.mostrarObrerasExterior(lista(obrerasExterior));
@@ -125,21 +132,20 @@ public class Colonia {
     public synchronized void salirColonia(Hormiga h) throws InterruptedException {
         pausa.verificarPausa();
         int salida = new Random().nextInt(2);
-        if(salida == 0){
+        if (salida == 0) {
             salida1.cruzarTunel();
-        }
-        else{
+        } else {
             salida2.cruzarTunel();
         }
-        if(h instanceof Obrera){
+        if (h instanceof Obrera) {
             obrerasInterior--;
             obrerasExterior.add(h);
             interfaz.mostrarObrerasExterior(lista(obrerasExterior));
-        }else {
+        } else {
             soldadosColonia.remove(h);
         }
     }
-    
+
     // Transporte entre ALMACEN y COMEDOR
     public synchronized void empezarTransporte(Hormiga h) throws InterruptedException {
         pausa.verificarPausa();
@@ -152,7 +158,7 @@ public class Colonia {
         transporte.remove(h);
         interfaz.mostrarllevandoComida(lista(transporte));
     }
-    
+
     // ZONA DE DESCANSO
     public synchronized void entrarZonaDescanso(Hormiga h) throws InterruptedException {
         pausa.verificarPausa();
@@ -165,7 +171,7 @@ public class Colonia {
         zonaDescanso.remove(h);
         interfaz.mostrarDescanso(lista(zonaDescanso));
     }
-    
+
     // ZONA DE INSTRUCCION
     public synchronized void entrarInstruccion(Hormiga h) throws InterruptedException {
         pausa.verificarPausa();
@@ -178,7 +184,7 @@ public class Colonia {
         soldadosIntruccion.remove(h);
         interfaz.mostrarInstruccion(lista(soldadosIntruccion));
     }
-    
+
     // REFUGIO
     public synchronized void entrarRefugio(Hormiga h) throws InterruptedException {
         pausa.verificarPausa();
@@ -192,35 +198,35 @@ public class Colonia {
         interfaz.mostarRefugio(lista(criasRefugio));
         h.isInterrupted();
     }
-    
+
     // INSECTO INVASOR
     public synchronized void insecto() throws InterruptedException {
         pausa.verificarPausa();
-        if(insecto.isAmenazaActiva() == true){
+        if (insecto.isAmenazaActiva() == true) {
             JOptionPane.showMessageDialog(null, "Ya hay un insecto atacando la colonia");
-        }
-        else{
+        } else {
             invasion = new CyclicBarrier(soldadosColonia.size());
             insecto.generarAmenaza();
             insecto.interrumpirHormigas(criasColonia);
             insecto.interrumpirHormigas(soldadosColonia);
         }
     }
-    
+
     public synchronized void esperarSoldados(Hormiga h) throws InterruptedException, BrokenBarrierException {
         pausa.verificarPausa();
         soldadosInvasion.add(h);
         interfaz.mostrarSoldadosInsecto(lista(soldadosInvasion));
         //invasion.await();
     }
-    
+
     public synchronized void exito(Hormiga h) throws InterruptedException {
         pausa.verificarPausa();
         soldadosInvasion.remove(h);
         interfaz.mostrarSoldadosInsecto(lista(soldadosInvasion));
         insecto.eliminarAmenaza();
+        soldadosColonia.addAll(soldadosColoniaAux);
     }
-    
+
     // OTROS
     private synchronized String lista(List<Hormiga> lista) {
         String contenido = "";
@@ -230,13 +236,13 @@ public class Colonia {
         }
         return contenido;
     }
-    
+
     public synchronized void escribirEnLog(String evento) {
         try {
-            pw.println(dtf.format(LocalDateTime.now()) +" - "+ evento);
+            pw.println(dtf.format(LocalDateTime.now()) + " - " + evento);
             logWriter.flush();
-        } catch (IOException e) {} 
+        } catch (IOException e) {
+        }
     }
-    
-}
 
+}
