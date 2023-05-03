@@ -31,7 +31,7 @@ public class Obrera extends Hormiga {
                     iteraciones = 0;
                 }
                 else{
-                    if(id % 3 == 0){
+                    if(id % 2 == 0){
                         try {
                             mueveComida();
                         } catch (InterruptedException ex) {}

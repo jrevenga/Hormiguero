@@ -71,43 +71,43 @@ public class Colonia {
         return pausa;
     }
 
-    public Comedor getComedor() {
+    public synchronized Comedor getComedor() {
         return comedor;
     }
 
-    public Almacen getAlmacen() {
+    public synchronized Almacen getAlmacen() {
         return almacen;
     }
 
-    public Interfaz getInterfaz() {
+    public synchronized Interfaz getInterfaz() {
         return interfaz;
     }
 
-    public InsectoInvasor getInsecto() {
+    public synchronized InsectoInvasor getInsecto() {
         return insecto;
     }
 
-    public Integer getObrerasExterior() {
+    public synchronized Integer getObrerasExterior() {
         return obrerasExterior.size();
     }
 
-    public Integer getObrerasInterior() {
+    public synchronized Integer getObrerasInterior() {
         return obrerasInterior;
     }
 
-    public Integer getSoldadosIntruccion() {
+    public synchronized Integer getSoldadosIntruccion() {
         return soldadosIntruccion.size();
     }
 
-    public Integer getSoldadosInvasion() {
+    public synchronized Integer getSoldadosInvasion() {
         return soldadosInvasion.size();
     }
 
-    public Integer getCriasComiendo() {
+    public synchronized Integer getCriasComiendo() {
         return comedor.getCriasComiendo();
     }
 
-    public Integer getCriasRefugio() {
+    public synchronized Integer getCriasRefugio() {
         return criasRefugio.size();
     }
 
@@ -168,8 +168,10 @@ public class Colonia {
 
     public synchronized void salirZonaDescanso(Hormiga h) throws InterruptedException {
         pausa.verificarPausa();
-        zonaDescanso.remove(h);
-        interfaz.mostrarDescanso(lista(zonaDescanso));
+        if(zonaDescanso.remove(h)){
+            interfaz.mostrarDescanso(lista(zonaDescanso));
+        }
+        
     }
 
     // ZONA DE INSTRUCCION
@@ -212,13 +214,12 @@ public class Colonia {
         }
     }
 
-    public synchronized void esperarSoldados(Hormiga h) throws InterruptedException, BrokenBarrierException {
+    public void esperarSoldados(Hormiga h) throws InterruptedException, BrokenBarrierException {
         pausa.verificarPausa();
-        soldadosInvasion.add(h);
-        interfaz.mostrarSoldadosInsecto(lista(soldadosInvasion));
-    }
-
-    public void esperarAliados() throws InterruptedException, BrokenBarrierException {
+        synchronized (soldadosInvasion){
+            soldadosInvasion.add(h);
+            interfaz.mostrarSoldadosInsecto(lista(soldadosInvasion));
+        }
         invasion.await();
     }
 

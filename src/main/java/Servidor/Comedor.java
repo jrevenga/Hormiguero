@@ -49,10 +49,10 @@ public class Comedor {
     
     public synchronized void salir(Hormiga h) throws InterruptedException {
         colonia.getPausa().verificarPausa();
-        if(h instanceof Cria){ 
+        boolean b = comedor.remove(h);
+        if(b && h instanceof Cria){
             criasComiendo--;
         }
-        comedor.remove(h);
         colonia.getInterfaz().mostrarComedor(lista(comedor));
     }
     

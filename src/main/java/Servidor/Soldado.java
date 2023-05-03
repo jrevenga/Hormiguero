@@ -7,8 +7,6 @@ package Servidor;
 
 import java.util.Random;
 import java.util.concurrent.BrokenBarrierException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -55,9 +53,8 @@ public class Soldado extends Hormiga {
         colonia.salirColonia(this);
         colonia.escribirEnLog("La hormiga soldado " + tipo + id + " sale de la colonia");
         colonia.esperarSoldados(this);
-        colonia.esperarAliados();
         colonia.escribirEnLog("La hormiga soldado " + tipo + id + " lucha contra el INSECTO INVASOR");
-        Thread.sleep(2000); // tiempo de lucha
+        Thread.sleep(20000); // tiempo de lucha
         colonia.exito(this);
         colonia.entrarColonia(this);
         colonia.escribirEnLog("La hormiga soldado " + tipo + id + " vuelve a la colonia");
