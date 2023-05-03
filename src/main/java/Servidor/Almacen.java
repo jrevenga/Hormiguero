@@ -64,7 +64,7 @@ public class Almacen {
         colonia.getInterfaz().unidadesAlmacen(comida.toString());
     }
     
-    private synchronized String lista(List<Hormiga> lista) {
+    private String lista(List<Hormiga> lista) {
         String contenido = "";
         for (int i = 0; i < lista.size(); i++) {
             Hormiga h = lista.get(i);
