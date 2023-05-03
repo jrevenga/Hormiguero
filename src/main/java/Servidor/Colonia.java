@@ -216,7 +216,10 @@ public class Colonia {
         pausa.verificarPausa();
         soldadosInvasion.add(h);
         interfaz.mostrarSoldadosInsecto(lista(soldadosInvasion));
-        //invasion.await();
+    }
+
+    public void esperarAliados() throws InterruptedException, BrokenBarrierException {
+        invasion.await();
     }
 
     public synchronized void exito(Hormiga h) throws InterruptedException {
@@ -225,6 +228,7 @@ public class Colonia {
         interfaz.mostrarSoldadosInsecto(lista(soldadosInvasion));
         insecto.eliminarAmenaza();
         soldadosColonia.addAll(soldadosColoniaAux);
+        soldadosColoniaAux.clear();
     }
 
     // OTROS
