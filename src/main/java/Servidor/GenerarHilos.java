@@ -14,13 +14,13 @@ import java.util.Random;
 public class GenerarHilos extends Thread{
     
     private Colonia colonia;
-    private int obrerasCreadas;
-    private int soldadosCreados;
+    private Integer obrerasCreadas;
+    private Integer soldadosCreados;
     
     public GenerarHilos(Colonia colonia) {
         this.colonia = colonia;
-        obrerasCreadas = 1;
-        soldadosCreados = 1;
+        this.obrerasCreadas = 1;
+        this.soldadosCreados = 1;
     }
     
     @Override

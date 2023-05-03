@@ -22,18 +22,18 @@ import javax.swing.JOptionPane;
 
 public class Colonia {
 
-    private final Tunel entrada, salida1, salida2;
-    private final Comedor comedor;
-    private final Almacen almacen;
-    private final Pausa pausa;
-    private final InsectoInvasor insecto;
-    private final List<Hormiga> obrerasExterior, soldadosInvasion, transporte, soldadosIntruccion, zonaDescanso,
+    private Tunel entrada, salida1, salida2;
+    private Comedor comedor;
+    private Almacen almacen;
+    private Pausa pausa;
+    private InsectoInvasor insecto;
+    private List<Hormiga> obrerasExterior, soldadosInvasion, transporte, soldadosIntruccion, zonaDescanso,
             soldadosColonia, soldadosColoniaAux, criasColonia, criasRefugio;
     private Integer obrerasInterior, comidaAlmacen;
     private final Interfaz interfaz;
     private FileWriter logWriter;
-    private final PrintWriter pw;
-    private final DateTimeFormatter dtf;
+    private PrintWriter pw;
+    private DateTimeFormatter dtf;
     private CyclicBarrier invasion;
 
     public Colonia(Interfaz interfaz) {

@@ -15,7 +15,7 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class DatosColonia extends UnicastRemoteObject implements InterfazRemota {
     
-    Colonia colonia;
+    private Colonia colonia;
 
     public DatosColonia(Colonia colonia) throws RemoteException {
         this.colonia = colonia;

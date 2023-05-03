@@ -19,10 +19,10 @@ public class Interfaz extends javax.swing.JFrame {
     /**
      * Creates new form Interfaz
      */
-    Colonia colonia;
-    GenerarHilos gen;
-    DatosColonia obj;
-    Registry registry;
+    private Colonia colonia;
+    private GenerarHilos gen;
+    private DatosColonia obj;
+    private Registry registry;
     
     public Interfaz() throws RemoteException {
         initComponents();

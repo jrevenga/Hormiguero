@@ -16,8 +16,8 @@ import java.util.concurrent.Semaphore;
 public class Almacen {
     
     private Integer comida, criasComiendo;
-    private final List<Hormiga> lista;
-    private final Semaphore semaforoAlmacen;
+    private List<Hormiga> lista;
+    private Semaphore semaforoAlmacen;
     private Colonia colonia;
 
     public Almacen(Colonia colonia) {

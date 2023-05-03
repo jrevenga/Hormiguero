@@ -13,7 +13,7 @@ import java.util.Random;
  */
 public class Obrera extends Hormiga {
     
-    Random rand;
+    private Random rand;
 
     public Obrera(Integer id, Colonia colonia) {
         super("HO", id, colonia);

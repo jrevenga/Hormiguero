@@ -15,7 +15,7 @@ import java.util.List;
 public class Comedor {
     
     private Integer comida, criasComiendo;
-    private final List<Hormiga> comedor;
+    private List<Hormiga> comedor;
     private Colonia colonia;
 
     public Comedor(Colonia colonia) {
