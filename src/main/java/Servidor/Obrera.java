@@ -23,6 +23,8 @@ public class Obrera extends Hormiga {
     @Override
     public void run() {
         try {
+            colonia.empezarEntrar(this);
+            Thread.sleep(100); // tiempo para cruzar
             colonia.entrarColonia(this);
             while(true){
                 if(iteraciones == 10){
@@ -50,7 +52,7 @@ public class Obrera extends Hormiga {
         colonia.getAlmacen().entrar(this);
         Thread.sleep(rand.nextInt(1000) + 1000);
         colonia.getAlmacen().coger();
-        colonia.escribirEnLog("La hormiga obrera " + tipo + id + " coge comida del ALMACÉN DE COMIDA");
+        colonia.escribirEnLog("La hormiga obrera " + tipo + id + " coge comida del ALMACEN DE COMIDA");
         //Salir ALMACÉN DE COMIDA
         colonia.getAlmacen().salir(this);
         colonia.empezarTransporte(this);
@@ -68,9 +70,14 @@ public class Obrera extends Hormiga {
     }
     
     private void recoleztarComida() throws InterruptedException{
-        colonia.salirColonia(this);
+        int salida = new Random().nextInt(2); // elegir salida
+        colonia.empezarSalir(this, salida);
+        Thread.sleep(100); // tiempo para cruzar
+        colonia.salirColonia(this, salida);
         colonia.escribirEnLog("La hormiga obrera " + tipo + id + " sale a buscar comida");
         Thread.sleep(4000);
+        colonia.empezarEntrar(this);
+        Thread.sleep(100); // tiempo para cruzar
         colonia.entrarColonia(this);
         colonia.escribirEnLog("La hormiga obrera " + tipo + id + " vuelve de recoleztar comida");
     }

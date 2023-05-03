@@ -21,6 +21,8 @@ public class Soldado extends Hormiga {
     @Override
     public void run() {
         try {
+            colonia.empezarEntrar(this);
+            Thread.sleep(100); // tiempo para cruzar
             colonia.entrarColonia(this);
         } catch (InterruptedException ex) {}
         
@@ -50,12 +52,17 @@ public class Soldado extends Hormiga {
         colonia.salirInstruccion(this);
         colonia.salirZonaDescanso(this);
         // Salir a repeler insecto
-        colonia.salirColonia(this);
+        int salida = new Random().nextInt(2); // elegir salida
+        colonia.empezarSalir(this, salida);
+        Thread.sleep(100); // tiempo para cruzar
+        colonia.salirColonia(this, salida);
         colonia.escribirEnLog("La hormiga soldado " + tipo + id + " sale de la colonia");
         colonia.esperarSoldados(this);
         colonia.escribirEnLog("La hormiga soldado " + tipo + id + " lucha contra el INSECTO INVASOR");
         Thread.sleep(20000); // tiempo de lucha
         colonia.exito(this);
+        colonia.empezarEntrar(this);
+        Thread.sleep(100); // tiempo para cruzar
         colonia.entrarColonia(this);
         colonia.escribirEnLog("La hormiga soldado " + tipo + id + " vuelve a la colonia");
     }
@@ -63,7 +70,7 @@ public class Soldado extends Hormiga {
     private void hacerInstruccion() throws InterruptedException{
         //Entrar ZONA DE INSTRUCCIÓN
         colonia.entrarInstruccion(this);
-        colonia.escribirEnLog("La hormiga soldado " + tipo + id + " comienza a hacer instrucción");
+        colonia.escribirEnLog("La hormiga soldado " + tipo + id + " comienza a hacer instruccion");
         Thread.sleep(new Random().nextInt(6000) + 2000);
         //Salir ZONA DE INSTRUCCIÓN
         colonia.salirInstruccion(this);

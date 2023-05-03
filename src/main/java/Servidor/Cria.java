@@ -20,6 +20,8 @@ public class Cria extends Hormiga {
     @Override
     public void run() {
         try {
+            colonia.empezarEntrar(this);
+            Thread.sleep(100); // tiempo para cruzar
             colonia.entrarColonia(this);
         } catch (InterruptedException ex) {}
 

@@ -71,19 +71,19 @@ public class Colonia {
         return pausa;
     }
 
-    public synchronized Comedor getComedor() {
+    public Comedor getComedor() {
         return comedor;
     }
 
-    public synchronized Almacen getAlmacen() {
+    public Almacen getAlmacen() {
         return almacen;
     }
 
-    public synchronized Interfaz getInterfaz() {
+    public Interfaz getInterfaz() {
         return interfaz;
     }
 
-    public synchronized InsectoInvasor getInsecto() {
+    public InsectoInvasor getInsecto() {
         return insecto;
     }
 
@@ -110,10 +110,15 @@ public class Colonia {
     public synchronized Integer getCriasRefugio() {
         return criasRefugio.size();
     }
+    
+    public void empezarEntrar(Hormiga h) throws InterruptedException {
+        pausa.verificarPausa();
+        entrada.entrarTunel();
+    }
 
     public synchronized void entrarColonia(Hormiga h) throws InterruptedException {
         pausa.verificarPausa();
-        entrada.cruzarTunel();
+        entrada.salirTunel();
         if (h instanceof Obrera) {
             obrerasExterior.remove(h);
             obrerasInterior++;
@@ -128,14 +133,22 @@ public class Colonia {
         }
         interfaz.mostrarObrerasExterior(lista(obrerasExterior));
     }
-
-    public synchronized void salirColonia(Hormiga h) throws InterruptedException {
+    
+    public void empezarSalir(Hormiga h, Integer n) throws InterruptedException {
         pausa.verificarPausa();
-        int salida = new Random().nextInt(2);
-        if (salida == 0) {
-            salida1.cruzarTunel();
+        if (n == 0) {
+            salida1.entrarTunel();
         } else {
-            salida2.cruzarTunel();
+            salida2.entrarTunel();
+        }
+    }
+
+    public synchronized void salirColonia(Hormiga h, Integer n) throws InterruptedException {
+        pausa.verificarPausa();
+        if (n == 0) {
+            salida1.salirTunel();
+        } else {
+            salida2.salirTunel();
         }
         if (h instanceof Obrera) {
             obrerasInterior--;
