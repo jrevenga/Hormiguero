@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 import javax.swing.JOptionPane;
@@ -60,8 +59,7 @@ public class Colonia {
         this.dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         try {
             this.logWriter = new FileWriter("evolucionHormiguero.txt");
-        } catch (IOException ex) {
-        }
+        } catch (IOException ex) {}
         this.pw = new PrintWriter(logWriter);
         interfaz.unidadesAlmacen(comidaAlmacen.toString());
         interfaz.unidadesComedor(comedor.getComida().toString());
@@ -259,8 +257,7 @@ public class Colonia {
         try {
             pw.println(dtf.format(LocalDateTime.now()) + " - " + evento);
             logWriter.flush();
-        } catch (IOException e) {
-        }
+        } catch (IOException e) {}
     }
 
 }
