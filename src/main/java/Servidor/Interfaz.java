@@ -30,7 +30,7 @@ public class Interfaz extends javax.swing.JFrame {
         colonia = new Colonia(this);
         obj = new DatosColonia(colonia);
         registry = LocateRegistry.createRegistry(1099);
-        registry.rebind("//127.0.0.1/Peaje", obj);
+        registry.rebind("//127.0.0.1/Colonia", obj);
         gen = new GenerarHilos(colonia);
         gen.start();
     }

@@ -23,7 +23,7 @@ public class Main {
     public static void main(String[] args) throws RemoteException, NotBoundException, InterruptedException {
         
         Registry registro = LocateRegistry.getRegistry("127.0.0.1", 1099);
-        InterfazRemota obj = (InterfazRemota) registro.lookup("//127.0.0.1/Peaje");
+        InterfazRemota obj = (InterfazRemota) registro.lookup("//127.0.0.1/Colonia");
         Interfaz cliente = new Interfaz(obj);
         cliente.setVisible(true);
         while(true){
