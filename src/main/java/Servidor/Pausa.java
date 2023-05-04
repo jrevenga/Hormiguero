@@ -11,24 +11,24 @@ package Servidor;
  */
 public class Pausa {
     
-    private boolean detenido;
+    private boolean pausa;
 
     public Pausa() {
-        this.detenido = false;
+        this.pausa = false;
     }
     
     public synchronized void verificarPausa() throws InterruptedException {
-        while (detenido) {
+        while (pausa) {
             wait();
         }
     }
 
     public synchronized void pausar() {
-        detenido = true;
+        pausa = true;
     }
 
     public synchronized void reanudar() {
-        detenido = false;
+        pausa = false;
         notifyAll();
     }
     
