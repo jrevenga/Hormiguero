@@ -20,7 +20,7 @@ El objetivo principal de este proyecto es simular el comportamiento de un hormig
 
 ## Configuración del Proyecto
 
-1. Clona este repositorio: `git clone https://github.com/tu-usuario/proyecto-hormiguero.git`
+1. Clona este repositorio: `git clone [https://github.com/tu-usuario/proyecto-hormiguero.git](https://github.com/jrevenga/Hormiguero.git)`
 2. Abre el proyecto en tu entorno de desarrollo favorito.
 3. Configura las dependencias si es necesario.
 4. Ejecuta la aplicación.
